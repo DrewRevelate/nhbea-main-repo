@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHBEA 2025 Annual Conference Program</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .conference-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .conference-theme {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .conference-date {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #d69e2e;
+        }
+
+        /* Welcome Section */
+        .welcome-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #1a365d;
+        }
+
+        .welcome-text {
+            margin-bottom: 1rem;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1.5rem;
+            color: #6b7280;
+        }
+
+        /* Schedule - Time Block */
+        .time-slot {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .time-header {
+            background: #eff6ff;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #1a365d;
+        }
+
+        .time-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        .time-duration {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .sessions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .session {
+            background: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .session-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .session-presenter {
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .session-room {
+            color: #1a365d;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .session-room::before {
+            content: "📍 ";
+        }
+
+        /* Speaker Cards */
+        .speaker-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #d69e2e;
+        }
+
+        .speaker-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-title {
+            font-size: 1.05rem;
+            color: #d69e2e;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-topic {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .speaker-session-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 0.75rem 1rem;
+            background: #eff6ff;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .speaker-session-info .time {
+            color: #1a365d;
+            font-weight: 600;
+        }
+
+        .speaker-session-info .room {
+            color: #d69e2e;
+            font-weight: 600;
+        }
+
+        .speaker-bio {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #4b5563;
+            margin-top: 1rem;
+        }
+
+        .speaker-website {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #1a365d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .speaker-website:hover {
+            color: #d69e2e;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid #d69e2e;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-content {
+            color: #4b5563;
+        }
+
+        /* Acknowledgement Box */
+        .acknowledgement-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 3px solid #d69e2e;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .school-section {
+            margin-top: 1.5rem;
+        }
+
+        .school-name {
+            font-weight: 700;
+            color: #1a365d;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .student-name {
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .note {
+            text-align: center;
+            font-style: italic;
+            color: #6b7280;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .conference-title {
+                font-size: 1.5rem;
+            }
+
+            .conference-theme {
+                font-size: 1.125rem;
+            }
+
+            .section-header {
+                font-size: 1.5rem;
+            }
+
+            .sessions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .time-slot, .speaker-card, .card {
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-text">NHBEA</div>
+        <div class="conference-title">2025 Annual Conference</div>
+        <div class="conference-theme">Ignite Your Future in Business Education!</div>
+        <div class="conference-date">October 24, 2025 • Manchester Community College</div>
+    </div>
+
+    <div class="container">
+        <!-- Welcome -->
+        <div class="welcome-box">
+            <h2 class="section-header" style="margin-top: 0; border-bottom: none;">Welcome</h2>
+            <p class="welcome-text"><strong>To our membership:</strong></p>
+            <p class="welcome-text">
+                The New Hampshire Business Education Association (NHBEA) is a professional organization dedicated to serving individuals and groups engaged in instruction, research, and dissemination of information for and about business. For over 100 years NHBEA has been a leader in the development and advancement of business education curriculum and the advocacy of business competencies that are essential in today's global society.
+            </p>
+            <p class="welcome-text">
+                The vision of NHBEA is to collaborate with schools, communities, businesses, and educational leaders at the local, state, and national levels; to achieve universal acknowledgment that business knowledge is a vital component of educating the whole person; and is an essential driver of national economies.
+            </p>
+            <p class="welcome-text">
+                Our membership is comprised of professional educators such as yourself who are immersed in the education of secondary and post-secondary audiences. The span of disciplines that NHBEA accommodates includes areas such as career and technical education (CTE), business education, computer sciences, finance, entrepreneurship, marketing, and other relevant content areas.
+            </p>
+            <p class="welcome-text">
+                NHBEA will provide opportunities for you to share your expertise by contributing to the NHBEA newsletter or the "peer reviewed" online academic journal. More than ever, your voice will make a difference in the programming of workshops, conferences, legislation, and educator recognition.
+            </p>
+            <p class="welcome-text">
+                Join us in making NHBEA a strong advocate for business education at every level.
+            </p>
+            <div class="signature">
+                Respectfully,<br>
+                <strong>NHBEA EXECUTIVE BOARD</strong>
+            </div>
+        </div>
+
+        <!-- Conference Schedule -->
+        <h2 class="section-header">Conference Schedule</h2>
+
+        <!-- 8:00 - 8:30 Registration -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">8:00 - 8:30 AM</div>
+                <div class="time-duration">30 minutes</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Registration</div>
+                    <div class="session-presenter">Christian Marcelo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8:45 Welcome -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">8:45 AM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Welcome</div>
+                    <div class="session-presenter">Colleen Jennings, MCC VPAA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8:50 Prayer & Pledge -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">8:50 AM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Prayer & Pledge</div>
+                    <div class="session-presenter">Michael Magoon, NHBEA Vice President</div>
+                    <div class="session-presenter">Maria Matarazzo, NHBEA Director</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8:55 Introduction -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">8:55 AM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Introduction of Keynote</div>
+                    <div class="session-presenter">Dorothy O'Gara, NHBEA President</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9:00 Keynote -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">9:00 - 9:45 AM</div>
+                <div class="time-duration">45 minutes</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Keynote Address</div>
+                    <div class="session-presenter">Rony Camille</div>
+                    <div class="session-presenter">Media Manager, Town of Tyngsboro, MA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10:00 Workshops 1 & 2 -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">10:00 - 11:00 AM</div>
+                <div class="time-duration">60 minutes • Concurrent Sessions</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">NH Graduation Requirements – Financial Literacy</div>
+                    <div class="session-presenter">Stephen Lynn</div>
+                    <div class="session-presenter">Vice President, Fidelity Investments</div>
+                    <div class="session-room">Room Main 272</div>
+                </div>
+                <div class="session">
+                    <div class="session-title">Early College High School</div>
+                    <div class="session-presenter">Major Wheelock</div>
+                    <div class="session-presenter">ECHS Coordinator, MCC ECHS</div>
+                    <div class="session-room">Room Main 274</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11:00 Workshops 3 & 4 -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">11:00 AM - 12:00 PM</div>
+                <div class="time-duration">60 minutes • Concurrent Sessions</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Marketing and AI</div>
+                    <div class="session-presenter">Drew Lambert</div>
+                    <div class="session-presenter">Revelate Operations LLC</div>
+                    <div class="session-room">Room Main 272</div>
+                </div>
+                <div class="session">
+                    <div class="session-title">Work-Study Programs</div>
+                    <div class="session-presenter">Dean Graziano, J.D.</div>
+                    <div class="session-presenter">VP of Corporate Work-Study</div>
+                    <div class="session-room">Room Main 274</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12:00 Roundtables -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">12:00 - 1:00 PM</div>
+                <div class="time-duration">60 minutes</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Roundtable Discussions</div>
+                    <div class="session-presenter">Maria Matarazzo, James Dowding, Catherine Lambert</div>
+                    <div class="session-room">MCC Meeting Room</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:00 Lunch -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">1:00 - 1:30 PM</div>
+                <div class="time-duration">30 minutes</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Lunch</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:30 Annual Meeting -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">1:30 PM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Annual Meeting</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:35 Elections -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">1:35 PM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Election of 2026 Officers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:45 Awards -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">1:45 PM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Presentation of Awards</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:55 Closing -->
+        <div class="time-slot">
+            <div class="time-header">
+                <div class="time-label">1:55 PM</div>
+            </div>
+            <div class="sessions">
+                <div class="session">
+                    <div class="session-title">Closing Remarks</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keynote Speaker Details -->
+        <h2 class="section-header">Keynote Speaker</h2>
+        <div class="speaker-card">
+            <div class="speaker-name">Rony Camille</div>
+            <div class="speaker-title">Media Manager, Town of Tyngsboro, MA</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 9:00 - 9:45 AM</span>
+            </div>
+            <div class="speaker-bio">
+                A communications and public affairs executive with 20+ years of experience. My career bridges journalism, digital media, and municipal leadership. At ABC News, I produced and edited stories that reached millions across broadcast and digital platforms. At WBZ NewsRadio/iHeartMedia, I drove more than 1.2 million unique digital views. In municipal leadership for Tyngsborough, Massachusetts, I increased website traffic by 1,800% and secured $250K+ in federal funding to expand civic engagement infrastructure. Today, as Media Program Director in Massachusetts, I oversee $1.2M in reserves, guide staff teams, and modernize platforms that make government more transparent and accessible. At the core, I believe communication is public service — a way to build trust, strengthen engagement, and bring government closer to the people it serves.
+            </div>
+            <a href="https://www.ronycamille.com/" class="speaker-website">🌐 www.ronycamille.com</a>
+        </div>
+
+        <!-- Workshop Speakers -->
+        <h2 class="section-header">Workshop Presenters</h2>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Stephen Lynn</div>
+            <div class="speaker-title">Vice President, Fidelity Investments</div>
+            <div class="speaker-topic">NH Graduation Requirements – Financial Literacy, Improving the Outcomes</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 10:00 - 11:00 AM</span>
+                <span class="room">📍 Room Main 272</span>
+            </div>
+            <div class="speaker-bio">
+                Steve Lynn is a seasoned financial services executive currently serving as the VP and Branch Leader at Fidelity Investments in Nashua, New Hampshire. With a robust career spanning over 17 years at Fidelity, he has held various leadership positions, demonstrating a strong commitment to client service and operational excellence. Steve's educational background includes an MBA in Business from Rivier College and a BA in Modern Languages from the University of Massachusetts at Lowell. His extensive experience in the financial investment sector has equipped him with a deep understanding of market dynamics and customer needs. He is known for his strategic vision and ability to lead teams in fast-paced environments. In addition to his professional pursuits, Steve has a passion for mentoring emerging leaders and fostering a culture of continuous improvement within his organization.
+            </div>
+        </div>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Major Wheelock</div>
+            <div class="speaker-title">ECHS Coordinator, MCC ECHS</div>
+            <div class="speaker-topic">Early College High School Programs</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 10:00 - 11:00 AM</span>
+                <span class="room">📍 Room Main 274</span>
+            </div>
+            <div class="speaker-bio">
+                20 years' experience as a successful Leader/Operations Manager. Actively engages with students and successfully manages enrollment and retention. Excels at communication with small groups and with large audiences (verbal, written and listening). Frequent presenter at new student orientations, open houses, graduation, and award events. Communicates effectively with Admissions, Registrar, Financial Aid, and other student service departments to support students. Developed and provided continuous training for academic advisors, staff members, and faculty. Taught First Year Experience course as well as undergraduate and graduate business courses in class, hybrid and online. Exceptional decision-making and problem-solving skills - being creative, handling challenging situations in a student-focused environment.
+            </div>
+        </div>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Drew Lambert</div>
+            <div class="speaker-title">Founder, Revelate Operations LLC</div>
+            <div class="speaker-topic">Marketing and AI</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 11:00 AM - 12:00 PM</span>
+                <span class="room">📍 Room Main 272</span>
+            </div>
+            <div class="speaker-bio">
+                Drew Lambert is a Senior Salesforce Engineer at Bevi, where he leads large-scale initiatives in Revenue Operations, enterprise applications, and AI-driven automation. With deep expertise in Salesforce architecture, process optimization, and data integration, Drew has transformed how sales, partner, and customer success teams operate by designing scalable solutions that improve forecasting, streamline contracting, and strengthen compliance.
+            </div>
+            <div class="speaker-bio" style="margin-top: 0.5rem;">
+                In addition to his leadership at Bevi, Drew is the founder of Revelate Operations LLC, a consulting practice focused on helping organizations unlock growth through RevOps strategy, Salesforce architecture, and intelligent automation. He has advised nonprofits, startups, and high-growth companies on building resilient data models, integrating platforms like AWS and Salesforce Data Cloud, and deploying AI agents to accelerate sales enablement.
+            </div>
+            <div class="speaker-bio" style="margin-top: 0.5rem;">
+                A hands-on builder and strategist, Drew brings a rare blend of technical depth and business acumen. His work spans hundreds of Salesforce flows, advanced Lightning components, and enterprise-grade security designs—all in service of creating systems that scale with clarity and efficiency. He is passionate about applying automation and thoughtful design to eliminate friction, empower teams, and align technology with revenue growth.
+            </div>
+        </div>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Dean Graziano, J.D.</div>
+            <div class="speaker-title">Vice President of Corporate Work-Study</div>
+            <div class="speaker-topic">Work-Study Programs</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 11:00 AM - 12:00 PM</span>
+                <span class="room">📍 Room Main 274</span>
+            </div>
+            <div class="speaker-bio">
+                A multi-state award-winning educator and former Curriculum Specialist Teacher grades 6-12 Social Studies, with over 29 years in education. Invited in 1996 to be on a state-wide school assessment panel - the Massachusetts MCAS Standard Setting Panel and also selected by the College Board to be an Advanced Placement Reader for U.S. History in San Antonio, TX from 1998-2003.
+            </div>
+            <div class="speaker-bio" style="margin-top: 0.5rem;">
+                In 2006, invited to be a teacher fellow on the historical inquiry model and a national presenter for ABC-Clio, a Social Studies database company located in Santa Barbara, CA. Served as a Co-Chair for Somers High School NEASC accreditation, as well as being on visiting accreditation teams. These experiences have helped to differentiate instruction, use data towards driving instructional and curriculum decisions, and be a national award-winning educator by the United States Department of Education's American Star of Teaching Award.
+            </div>
+            <div class="speaker-bio" style="margin-top: 0.5rem;">
+                In 2008, decided to pursue a dream and attend law school. Graduated in 2011, and received 5 CALI awards (Evidence, Legal Ethics, Cyber-Law, Business for the Practice of Law, and Law Office Technology). Awarded the 2011 MA School of Law Community Service Award. In 2017, selected as the State of New Hampshire's Extended Learning Opportunity Coordinator-of-the-Year.
+            </div>
+            <div class="speaker-bio" style="margin-top: 0.5rem;">
+                Work-force pilot program in Rochester, NH was singled out by Governor Sununu as the model for the State of N.H. Career Academies. Developed and implemented a proposal to purchase a Mobile Classroom (a new & remodeled 36' RV, aka M.A.P.s) utilizing Perkins V funding, to bring CTE/WBL programming - leveling the playing field/equity for ALL NH students in NH.
+            </div>
+        </div>
+
+        <!-- Roundtable Facilitators -->
+        <h2 class="section-header">Roundtable Facilitators</h2>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Maria Matarazzo</div>
+            <div class="speaker-title">UMass Lowell, Manning School of Business Department</div>
+            <div class="speaker-topic">Marketing, Entrepreneurship & Innovation - Cellphone and Technology Policies in the Classroom that Address New NH State Law</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 12:00 - 1:00 PM</span>
+                <span class="room">📍 MCC Meeting Room</span>
+            </div>
+            <div class="speaker-bio">
+                Maria Matarazzo is an experienced professor and Chair with a demonstrated history of successfully achieving organizational goals in higher education. She is skilled in teaching business and marketing curriculum, writing courses, student advising, supervision of faculty, program design and development, community outreach, career advisement, and accreditation strategies. Maria is a freelance editor of scholarly research and publications and was awarded Teacher of the Year for the state of New Hampshire in Business Education.
+            </div>
+        </div>
+
+        <div class="speaker-card">
+            <div class="speaker-name">James Dowding</div>
+            <div class="speaker-title">Business Educator, Nashua High School North</div>
+            <div class="speaker-topic">The Global Spin</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 12:00 - 1:00 PM</span>
+                <span class="room">📍 MCC Meeting Room</span>
+            </div>
+            <div class="speaker-bio">
+                A versatile educator with significant and varied academic and business experience; a demonstrated track record of developing effective training situations for individuals and groups; responsible for budget development and implementation and able to build highly functioning teams to accomplish the goals and vision of the organization. He is currently serving as an Accounting/Finance teacher at the Academy of Finance with the Nashua Technology Center.
+            </div>
+        </div>
+
+        <div class="speaker-card">
+            <div class="speaker-name">Catherine Lambert, MS MEd CAGS</div>
+            <div class="speaker-title">Therosa Counseling</div>
+            <div class="speaker-topic">Trauma in the Classroom</div>
+            <div class="speaker-session-info">
+                <span class="time">⏰ 12:00 - 1:00 PM</span>
+                <span class="room">📍 MCC Meeting Room</span>
+            </div>
+            <div class="speaker-bio">
+                As a Licensed Mental Health Counselor in New Hampshire and Massachusetts, and the founder of Therosa Counseling, LLC, I have worked with individuals, couples, and families who have endured deep loss, shame, and hardship. From these experiences, I developed The Scenic Path — a therapeutic framework that blends set up clinical models with a visual, metaphorical journey toward authenticity. The Scenic Path is more than a method; it is a way of seeing oneself not as broken, but as a traveler. Clients learn to notice the survival roads they have walked, to recognize the bridges back to their true self, and to reclaim authenticity as their destination. My mission is to walk with people as they rediscover that their life has meaning, and that peace is possible.
+            </div>
+        </div>
+
+        <!-- Vendors -->
+        <h2 class="section-header">Vendors & Exhibitors</h2>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">NY Life Insurance</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Goldman Sachs - 10K Small Business</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Workforce Training</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Stark Brewing Co.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">MCC Admissions</div>
+            </div>
+            <div class="card">
+                <div class="card-title">ECHS</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Jean D'Arc Credit Union</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Marshall's</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Rivier University</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Doubletree</div>
+            </div>
+        </div>
+
+        <!-- Officers -->
+        <h2 class="section-header">NHBEA Proposed Slate of Officers, 2026</h2>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">President</div>
+                <div class="card-content">James Dowding</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Vice President</div>
+                <div class="card-content">Michael Magoon</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Secretary</div>
+                <div class="card-content">Sarah Compagna</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Treasurer</div>
+                <div class="card-content">Christian Marcelo</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Past President</div>
+                <div class="card-content">Dottie O'Gara</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Director</div>
+                <div class="card-content">TBD</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Public Relations and Media</div>
+                <div class="card-content">TBD</div>
+            </div>
+        </div>
+        <div class="note">Nominations will also be considered from members</div>
+
+        <!-- Acknowledgement -->
+        <h2 class="section-header">Acknowledgement</h2>
+        <div class="acknowledgement-box">
+            <p class="welcome-text">
+                The NHBEA Board would like to acknowledge the contributions of the following business students to the production of the 102nd Annual NHBEA Conference.
+            </p>
+
+            <div class="school-section">
+                <div class="school-name">Nashua High School North Finance Students</div>
+                <div class="student-grid">
+                    <div class="student-name">Guilherme Sales Moraes</div>
+                    <div class="student-name">Tommy Dratch</div>
+                    <div class="student-name">Keya Patel</div>
+                    <div class="student-name">Alicia Robinson</div>
+                    <div class="student-name">Reese Baxter</div>
+                </div>
+
+                <div class="school-name">Alvirne High School Marketing Students</div>
+                <div class="student-grid">
+                    <div class="student-name">Chase Noone</div>
+                    <div class="student-name">Ethan Dudley</div>
+                    <div class="student-name">Patrick Lloyd</div>
+                    <div class="student-name">Alex Drwon</div>
+                    <div class="student-name">Aidan Nichols</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

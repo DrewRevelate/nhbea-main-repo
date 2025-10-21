@@ -1,0 +1,44 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // NHBEA Logo - explicitly public for all users
+    match /public/NHBEALogo.png {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Public images - anyone can read, only authenticated users can write
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Conference images - make them public for display on website
+    match /conference_images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Private images - only authenticated users can read/write
+    match /private/{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Legacy Member_Images path - keep for backward compatibility during migration
+    match /Member_Images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Legacy Sponsors path - keep for backward compatibility during migration
+    match /Sponsors/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Default deny all other paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,325 @@
+name: Standardized Components Testing Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'src/components/**'
+      - 'src/__tests__/**'
+      - '__tests__/**'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'src/components/**'
+      - 'src/__tests__/**'
+      - '__tests__/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '18.x'
+  COVERAGE_THRESHOLD: 90
+
+jobs:
+  # Quality Gates - Basic linting and formatting
+  quality-gates:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Check TypeScript compilation
+        run: npx tsc --noEmit
+
+      - name: Verify build succeeds
+        run: npm run build
+
+  # Unit Testing with Coverage Requirements
+  unit-tests:
+    name: Unit Tests & Coverage
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests with coverage
+        run: npm test -- --coverage --watchAll=false
+
+      - name: Check coverage thresholds
+        run: |
+          # Extract coverage percentages from Jest output
+          COVERAGE=$(npm test -- --coverage --watchAll=false --silent 2>&1 | grep -E "All files.*[0-9]+\.[0-9]+" | tail -1)
+          echo "Coverage report: $COVERAGE"
+          
+          # Parse statement coverage percentage
+          STMT_COVERAGE=$(echo "$COVERAGE" | grep -oE '[0-9]+\.[0-9]+' | head -1)
+          echo "Statement coverage: $STMT_COVERAGE%"
+          
+          # Check if coverage meets threshold
+          if (( $(echo "$STMT_COVERAGE >= $COVERAGE_THRESHOLD" | bc -l) )); then
+            echo "✅ Coverage threshold met: $STMT_COVERAGE% >= $COVERAGE_THRESHOLD%"
+          else
+            echo "❌ Coverage threshold not met: $STMT_COVERAGE% < $COVERAGE_THRESHOLD%"
+            exit 1
+          fi
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: standardized-components-coverage
+
+  # Component Integration Testing
+  component-integration:
+    name: Component Integration Tests
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run component integration tests
+        run: npm test -- --testPathPattern="components" --watchAll=false
+
+      - name: Validate component exports
+        run: |
+          echo "Validating StandardPageLayout export..."
+          node -e "
+            const comp = require('./src/components/StandardPageLayout.tsx');
+            if (!comp.default) throw new Error('StandardPageLayout default export not found');
+            console.log('✅ StandardPageLayout export valid');
+          " || exit 1
+
+          echo "Validating FlexibleHero export..."
+          node -e "
+            const comp = require('./src/components/FlexibleHero.tsx');
+            if (!comp.default) throw new Error('FlexibleHero default export not found');
+            console.log('✅ FlexibleHero export valid');
+          " || exit 1
+
+  # Visual Regression Testing
+  visual-regression:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+    needs: component-integration
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application server
+        run: npm start &
+        env:
+          NODE_ENV: production
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run visual regression tests
+        run: npx playwright test __tests__/e2e/component-visual-regression.spec.ts
+
+      - name: Upload visual diff reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-regression-report
+          path: test-results/
+          retention-days: 7
+
+  # Accessibility Compliance Testing  
+  accessibility-testing:
+    name: Accessibility Compliance Tests
+    runs-on: ubuntu-latest
+    needs: component-integration
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application server
+        run: npm start &
+        env:
+          NODE_ENV: production
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run accessibility tests
+        run: npx playwright test __tests__/e2e/accessibility-compliance.spec.ts
+
+      - name: Upload accessibility reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: accessibility-test-report
+          path: test-results/
+          retention-days: 7
+
+  # Cross-Browser Testing
+  cross-browser:
+    name: Cross-Browser Testing
+    runs-on: ubuntu-latest
+    needs: [visual-regression, accessibility-testing]
+    timeout-minutes: 45
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application server
+        run: npm start &
+        env:
+          NODE_ENV: production
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run cross-browser tests
+        run: npx playwright test --project=${{ matrix.browser }}
+
+      - name: Upload browser-specific reports
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cross-browser-report-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 7
+
+  # Final Integration Test
+  final-integration:
+    name: Final Integration & Deployment Check
+    runs-on: ubuntu-latest
+    needs: [unit-tests, component-integration, visual-regression, accessibility-testing, cross-browser]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Final build verification
+        run: npm run build
+
+      - name: Generate test summary
+        run: |
+          echo "## 🎉 Standardized Components Testing Pipeline Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ All Quality Gates Passed:" >> $GITHUB_STEP_SUMMARY
+          echo "- Code quality and linting" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit tests with ${{ env.COVERAGE_THRESHOLD }}%+ coverage" >> $GITHUB_STEP_SUMMARY
+          echo "- Component integration tests" >> $GITHUB_STEP_SUMMARY
+          echo "- Visual regression testing" >> $GITHUB_STEP_SUMMARY
+          echo "- WCAG 2.1 AA accessibility compliance" >> $GITHUB_STEP_SUMMARY
+          echo "- Cross-browser compatibility (Chrome, Firefox, Safari)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🚀 Ready for Production Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "All standardized components have passed comprehensive testing pipeline." >> $GITHUB_STEP_SUMMARY
+
+# Workflow completion notification
+  notify-completion:
+    name: Notify Testing Completion  
+    runs-on: ubuntu-latest
+    needs: final-integration
+    if: always()
+    steps:
+      - name: Notification
+        run: |
+          if [[ "${{ needs.final-integration.result }}" == "success" ]]; then
+            echo "🎉 Standardized Components Testing Pipeline completed successfully!"
+            echo "All components are ready for production deployment."
+          else
+            echo "❌ Testing pipeline failed. Please review the failed jobs."
+            exit 1
+          fi

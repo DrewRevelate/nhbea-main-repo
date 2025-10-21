@@ -1,0 +1,112 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to all documents
+    match /{document=**} {
+      allow read: if true;
+    }
+    
+    // Allow student application submissions
+    match /studentApplicants/{document} {
+      allow create: if isValidStudentApplication(resource.data);
+    }
+    
+    // Allow professional membership submissions  
+    match /membershipApplications/{document} {
+      allow create: if isValidMembershipApplication(resource.data);
+    }
+    
+    // Allow FireCMS admin access to CMS collections
+    match /members/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /organizations/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /conference/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /registrants/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /content/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /boardMembers/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /pastPresidents/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /sponsors/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /newsletterSubscribers/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /hallOfFame/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /awards/{document} {
+      allow write: if request.auth != null;
+    }
+    
+    match /nominations/{document} {
+      allow create: if true; // Allow all nomination creates - validation happens at API level
+      allow read, update, delete: if request.auth != null;
+    }
+    
+    // Restrict all other write access
+    match /{document=**} {
+      allow write: if false;
+    }
+  }
+  
+  // Validation function for student applications
+  function isValidStudentApplication(data) {
+    return data.keys().hasAll(['personalInfo', 'academicInfo', 'essay', 'references', 'submittedAt', 'status']) &&
+           data.personalInfo.keys().hasAll(['firstName', 'lastName', 'email', 'phone']) &&
+           data.academicInfo.keys().hasAll(['institution', 'major', 'graduationYear', 'gpa']) &&
+           data.essay is string &&
+           data.references is list &&
+           data.references.size() >= 2 &&
+           data.references.size() <= 3 &&
+           data.status == 'pending';
+  }
+  
+  // Validation function for professional membership applications
+  function isValidMembershipApplication(data) {
+    return data.keys().hasAll(['firstName', 'lastName', 'email', 'phone']) &&
+           data.firstName is string &&
+           data.lastName is string &&
+           data.email is string &&
+           data.phone is string;
+  }
+  
+  // Validation function for award nominations - minimal working version
+  function isValidNomination(data) {
+    return data.awardId is string &&
+           data.nomineeInfo is map &&
+           data.nomineeInfo.name is string &&
+           data.nomineeInfo.email is string &&
+           data.nominatorInfo is map &&
+           data.nominatorInfo.name is string &&
+           data.nominatorInfo.email is string &&
+           data.awardCategory is string &&
+           data.nominationText is string &&
+           data.nominationText.size() >= 50 &&
+           data.nominationText.size() <= 2000 &&
+           data.status == 'pending';
+  }
+}

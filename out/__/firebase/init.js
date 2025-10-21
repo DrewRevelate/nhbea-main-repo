@@ -1,0 +1,11 @@
+if (typeof firebase === 'undefined') throw new Error('hosting/init-error: Firebase SDK not detected. You must include it before /__/firebase/init.js');
+firebase.initializeApp({
+  "apiKey": "AIzaSyC08Pd4oC3bTOKFnNXQtgCUx8YVVczpXZM",
+  "appId": "1:956870811159:web:825f4c67fa29b6e1cac652",
+  "authDomain": "nhbea-64cab.firebaseapp.com",
+  "databaseURL": "https://nhbea-64cab-default-rtdb.firebaseio.com",
+  "measurementId": "G-PQFGKC3195",
+  "messagingSenderId": "956870811159",
+  "projectId": "nhbea-64cab",
+  "storageBucket": "nhbea-64cab.firebasestorage.app"
+});

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHBEA Conference Data Importer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .status.warning {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        button {
+            background: #1a365d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #2c5282;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .details {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a365d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 NHBEA Conference Data Importer</h1>
+        <p>This tool will import the 2025 conference data to your Firebase Firestore database.</p>
+
+        <div id="status" class="status info">
+            Ready to import conference data. Click the button below to start.
+        </div>
+
+        <div id="details" class="details" style="display: none;"></div>
+
+        <button id="importBtn" onclick="importData()">Import 2025 Conference Data</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getFirestore, doc, setDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN9_bqbON1B5l-KqT8PcPHxjlQ5bZiG6c",
+            authDomain: "nhbea-64cab.firebaseapp.com",
+            projectId: "nhbea-64cab",
+            storageBucket: "nhbea-64cab.firebasestorage.app",
+            messagingSenderId: "956870811159",
+            appId: "1:956870811159:web:a96e7bc68e8b21c3a37e92",
+            measurementId: "G-T3XWRLHXYB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.importData = async function() {
+            const statusEl = document.getElementById('status');
+            const detailsEl = document.getElementById('details');
+            const btnEl = document.getElementById('importBtn');
+
+            btnEl.disabled = true;
+            statusEl.className = 'status info';
+            statusEl.innerHTML = '<div class="loading"></div> Importing conference data...';
+            detailsEl.style.display = 'none';
+
+            try {
+                // Conference data to import
+                const conferenceData = {
+                    title: "102nd Annual NHBEA Conference",
+                    description: "Join us for the 102nd Annual New Hampshire Business Education Association Conference featuring workshops on Marketing & AI, Financial Literacy, Work-Study Programs, and Early College High School programs. Network with fellow educators and gain valuable insights to ignite your future in business education!",
+                    year: 2025,
+                    schedule: {
+                        date: Timestamp.fromDate(new Date('2025-10-24T08:00:00.000Z')),
+                        startTime: "08:00",
+                        endTime: "14:00",
+                        timezone: "America/New_York"
+                    },
+                    location: {
+                        venue: "Manchester Community College",
+                        address: {
+                            street: "1066 Front Street",
+                            city: "Manchester",
+                            state: "NH",
+                            zipCode: "03102"
+                        },
+                        virtualOption: false
+                    },
+                    registration: {
+                        isOpen: true,
+                        openDate: Timestamp.fromDate(new Date('2025-08-01T00:00:00.000Z')),
+                        closeDate: Timestamp.fromDate(new Date('2025-10-20T23:59:59.000Z')),
+                        capacity: 150,
+                        currentCount: 0,
+                        waitlistEnabled: true,
+                        fees: {
+                            member: 75,
+                            nonMember: 100,
+                            student: 25,
+                            earlyBird: {
+                                amount: 60,
+                                deadline: Timestamp.fromDate(new Date('2025-09-15T23:59:59.000Z'))
+                            }
+                        },
+                        requiredFields: ["fullName", "email", "institution", "membershipStatus"],
+                        waitingList: []
+                    },
+                    media: {
+                        imageURL: "/images/conference-2025.jpg",
+                        programURL: "/conference-program.html"
+                    },
+                    speakers: [
+                        {
+                            id: "rony-camille",
+                            name: "Rony Camille",
+                            title: "Media Manager",
+                            organization: "Town of Tyngsboro, MA",
+                            bio: "A communications and public affairs executive with 20+ years of experience. My career bridges journalism, digital media, and municipal leadership. At ABC News, I produced and edited stories that reached millions across broadcast and digital platforms. At WBZ NewsRadio/iHeartMedia, I drove more than 1.2 million unique digital views. In municipal leadership for Tyngsborough, Massachusetts, I increased website traffic by 1,800% and secured $250K+ in federal funding to expand civic engagement infrastructure.",
+                            websiteURL: "https://www.ronycamille.com/",
+                            expertise: ["Communication", "Digital Media", "Public Affairs", "Civic Engagement"],
+                            sessionIds: ["keynote-1"],
+                            isKeynote: true,
+                            featured: true
+                        },
+                        {
+                            id: "stephen-lynn",
+                            name: "Stephen Lynn",
+                            title: "Vice President, Branch Leader",
+                            organization: "Fidelity Investments",
+                            bio: "Steve Lynn is a seasoned financial services executive currently serving as the VP and Branch Leader at Fidelity Investments in Nashua, New Hampshire. With over 17 years at Fidelity, he demonstrates strong commitment to client service and operational excellence. His extensive experience in the financial investment sector has equipped him with a deep understanding of market dynamics and customer needs.",
+                            expertise: ["Financial Literacy", "Financial Services", "Leadership", "Education"],
+                            sessionIds: ["workshop-1"],
+                            isKeynote: false,
+                            featured: true
+                        },
+                        {
+                            id: "major-wheelock",
+                            name: "Major Wheelock",
+                            title: "ECHS Coordinator",
+                            organization: "MCC ECHS",
+                            bio: "20 years' experience as a successful Leader/Operations Manager. Actively engages with students and successfully manages enrollment and retention. Developed continuous training programs for academic advisors, staff, and faculty. Exceptional decision-making and problem-solving skills in student-focused environments.",
+                            expertise: ["Early College Programs", "Student Services", "Operations Management", "Higher Education"],
+                            sessionIds: ["workshop-2"],
+                            isKeynote: false,
+                            featured: true
+                        },
+                        {
+                            id: "drew-lambert",
+                            name: "Drew Lambert",
+                            title: "Founder, Senior Salesforce Engineer",
+                            organization: "Revelate Operations LLC / Bevi",
+                            bio: "Drew Lambert is a Senior Salesforce Engineer at Bevi and founder of Revelate Operations LLC. With deep expertise in Salesforce architecture, process optimization, and AI-driven automation, Drew has transformed how teams operate by designing scalable solutions. His consulting practice focuses on helping organizations unlock growth through RevOps strategy and AI agents.",
+                            expertise: ["Marketing", "AI", "Automation", "Salesforce", "Revenue Operations"],
+                            sessionIds: ["workshop-3"],
+                            isKeynote: false,
+                            featured: true
+                        },
+                        {
+                            id: "dean-graziano",
+                            name: "Dean Graziano, J.D.",
+                            title: "Vice President of Corporate Work-Study",
+                            organization: "Rochester Career & Technical Center",
+                            bio: "A multi-state award-winning educator with over 29 years in education. Selected as the State of New Hampshire's Extended Learning Opportunity Coordinator-of-the-Year in 2017. Work-force pilot program in Rochester, NH was singled out by Governor Sununu as the model for the State of NH Career Academies.",
+                            expertise: ["Work-Study Programs", "CTE", "Career Education", "Program Development"],
+                            sessionIds: ["workshop-4"],
+                            isKeynote: false,
+                            featured: true
+                        },
+                        {
+                            id: "maria-matarazzo",
+                            name: "Maria Matarazzo",
+                            title: "Professor and Chair",
+                            organization: "UMass Lowell, Manning School of Business",
+                            bio: "Maria Matarazzo is an experienced professor and Chair with a demonstrated history of successfully achieving organizational goals in higher education. Maria was awarded Teacher of the Year for the state of New Hampshire in Business Education.",
+                            expertise: ["Marketing", "Entrepreneurship", "Innovation", "Higher Education"],
+                            sessionIds: ["roundtable-1"],
+                            isKeynote: false,
+                            featured: false
+                        },
+                        {
+                            id: "james-dowding",
+                            name: "James Dowding",
+                            title: "Business Educator",
+                            organization: "Nashua High School North",
+                            bio: "A versatile educator with significant academic and business experience. Currently serving as an Accounting/Finance teacher at the Academy of Finance with the Nashua Technology Center.",
+                            expertise: ["Accounting", "Finance", "Business Education", "Global Business"],
+                            sessionIds: ["roundtable-2"],
+                            isKeynote: false,
+                            featured: false
+                        },
+                        {
+                            id: "catherine-lambert",
+                            name: "Catherine Lambert, MS MEd CAGS",
+                            title: "Licensed Mental Health Counselor",
+                            organization: "Therosa Counseling",
+                            bio: "Licensed Mental Health Counselor in New Hampshire and Massachusetts, and founder of Therosa Counseling, LLC. She developed The Scenic Path — a therapeutic framework that blends clinical models with a visual, metaphorical journey toward authenticity.",
+                            expertise: ["Mental Health", "Trauma-Informed Education", "Counseling", "Student Wellbeing"],
+                            sessionIds: ["roundtable-3"],
+                            isKeynote: false,
+                            featured: false
+                        }
+                    ],
+                    agenda: {
+                        sessions: [
+                            {
+                                id: "registration",
+                                title: "Registration",
+                                description: "Check-in and registration for conference attendees",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T08:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T08:30:00.000Z')),
+                                track: "General",
+                                type: "break",
+                                level: "all"
+                            },
+                            {
+                                id: "welcome",
+                                title: "Welcome",
+                                description: "Welcome remarks from MCC VPAA",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T08:45:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T08:50:00.000Z')),
+                                track: "General",
+                                type: "keynote",
+                                speaker: "Colleen Jennings, MCC VPAA",
+                                level: "all"
+                            },
+                            {
+                                id: "keynote-1",
+                                title: "Keynote Address: The Future of Communication in Education",
+                                description: "Communications and public affairs executive Rony Camille shares insights from 20+ years bridging journalism, digital media, and municipal leadership.",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T09:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T09:45:00.000Z')),
+                                track: "General",
+                                type: "keynote",
+                                speaker: "rony-camille",
+                                level: "all",
+                                learningObjectives: [
+                                    "Understand modern communication strategies for educational settings",
+                                    "Learn how to leverage digital media for civic engagement",
+                                    "Discover approaches to build trust and transparency through communication"
+                                ]
+                            },
+                            {
+                                id: "workshop-1",
+                                title: "NH Graduation Requirements – Financial Literacy",
+                                description: "Explore New Hampshire's financial literacy graduation requirements and strategies for improving outcomes in your classroom.",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T10:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T11:00:00.000Z')),
+                                track: "Workshop Track A",
+                                type: "workshop",
+                                speaker: "stephen-lynn",
+                                room: "Room Main 272",
+                                level: "all",
+                                learningObjectives: [
+                                    "Understand NH financial literacy requirements",
+                                    "Implement effective financial literacy curriculum",
+                                    "Improve student outcomes in financial education"
+                                ]
+                            },
+                            {
+                                id: "workshop-2",
+                                title: "Early College High School",
+                                description: "Learn about Early College High School programs and how to successfully manage enrollment and retention.",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T10:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T11:00:00.000Z')),
+                                track: "Workshop Track B",
+                                type: "workshop",
+                                speaker: "major-wheelock",
+                                room: "Room Main 274",
+                                level: "all",
+                                learningObjectives: [
+                                    "Understand ECHS program structures",
+                                    "Learn enrollment and retention strategies",
+                                    "Explore student support services in ECHS"
+                                ]
+                            },
+                            {
+                                id: "workshop-3",
+                                title: "Marketing and AI",
+                                description: "Discover how AI is transforming marketing education and explore practical applications for the classroom.",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T11:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T12:00:00.000Z')),
+                                track: "Workshop Track A",
+                                type: "workshop",
+                                speaker: "drew-lambert",
+                                room: "Room Main 272",
+                                level: "intermediate",
+                                learningObjectives: [
+                                    "Understand AI applications in modern marketing",
+                                    "Explore AI tools for classroom use",
+                                    "Learn automation strategies for business processes"
+                                ]
+                            },
+                            {
+                                id: "workshop-4",
+                                title: "Work-Study Programs",
+                                description: "Explore innovative work-study program models and learn how to implement CTE/WBL programming in your school.",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T11:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T12:00:00.000Z')),
+                                track: "Workshop Track B",
+                                type: "workshop",
+                                speaker: "dean-graziano",
+                                room: "Room Main 274",
+                                level: "all",
+                                learningObjectives: [
+                                    "Understand work-study program structures",
+                                    "Learn about NH Career Academy models",
+                                    "Explore innovative CTE/WBL delivery methods"
+                                ]
+                            },
+                            {
+                                id: "roundtable-1",
+                                title: "Marketing, Entrepreneurship & Innovation",
+                                description: "Cellphone and Technology Policies in the Classroom that Address New NH State Law",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T12:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:00:00.000Z')),
+                                track: "Roundtable",
+                                type: "panel",
+                                speaker: "maria-matarazzo",
+                                room: "MCC Meeting Room",
+                                level: "all"
+                            },
+                            {
+                                id: "roundtable-2",
+                                title: "The Global Spin",
+                                description: "Interactive roundtable discussion on global business perspectives",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T12:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:00:00.000Z')),
+                                track: "Roundtable",
+                                type: "panel",
+                                speaker: "james-dowding",
+                                room: "MCC Meeting Room",
+                                level: "all"
+                            },
+                            {
+                                id: "roundtable-3",
+                                title: "Trauma in the Classroom",
+                                description: "Understanding and addressing trauma in educational settings",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T12:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:00:00.000Z')),
+                                track: "Roundtable",
+                                type: "panel",
+                                speaker: "catherine-lambert",
+                                room: "MCC Meeting Room",
+                                level: "all"
+                            },
+                            {
+                                id: "lunch",
+                                title: "Lunch Break",
+                                description: "Networking lunch",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T13:00:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:30:00.000Z')),
+                                track: "General",
+                                type: "break",
+                                level: "all"
+                            },
+                            {
+                                id: "annual-meeting",
+                                title: "Annual Meeting",
+                                description: "NHBEA Annual Business Meeting",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T13:30:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:35:00.000Z')),
+                                track: "General",
+                                type: "networking",
+                                level: "all"
+                            },
+                            {
+                                id: "elections",
+                                title: "Election of 2026 Officers",
+                                description: "Vote for the 2026 NHBEA Officer slate",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T13:35:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:45:00.000Z')),
+                                track: "General",
+                                type: "networking",
+                                level: "all"
+                            },
+                            {
+                                id: "awards",
+                                title: "Presentation of Awards",
+                                description: "Recognition of outstanding business educators",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T13:45:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T13:55:00.000Z')),
+                                track: "General",
+                                type: "networking",
+                                level: "all"
+                            },
+                            {
+                                id: "closing",
+                                title: "Closing Remarks",
+                                description: "Conference closing",
+                                startTime: Timestamp.fromDate(new Date('2025-10-24T13:55:00.000Z')),
+                                endTime: Timestamp.fromDate(new Date('2025-10-24T14:00:00.000Z')),
+                                track: "General",
+                                type: "networking",
+                                level: "all"
+                            }
+                        ],
+                        tracks: ["General", "Workshop Track A", "Workshop Track B", "Roundtable"],
+                        timeSlots: ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM"]
+                    },
+                    theme: {
+                        primaryColor: "#1a365d",
+                        secondaryColor: "#d69e2e",
+                        accentColor: "#fbbf24",
+                        backgroundGradient: {
+                            from: "#1a365d",
+                            to: "#2563eb"
+                        },
+                        brandingElements: {
+                            shapingTheFuture: true,
+                            animatedElements: false
+                        }
+                    },
+                    status: "registration_open",
+                    metadata: {
+                        createdAt: Timestamp.fromDate(new Date('2025-01-21T00:00:00.000Z')),
+                        updatedAt: Timestamp.fromDate(new Date()),
+                        createdBy: "admin",
+                        featured: true
+                    }
+                };
+
+                // Write to Firestore
+                const docRef = doc(db, 'conference', 'conference-2025');
+                await setDoc(docRef, conferenceData);
+
+                statusEl.className = 'status success';
+                statusEl.innerHTML = '✅ Successfully imported 2025 conference data!';
+
+                detailsEl.style.display = 'block';
+                detailsEl.innerHTML = `
+                    <strong>Import Summary:</strong><br>
+                    • Title: ${conferenceData.title}<br>
+                    • Speakers: ${conferenceData.speakers.length}<br>
+                    • Sessions: ${conferenceData.agenda.sessions.length}<br>
+                    • Status: ${conferenceData.status}<br>
+                    <br>
+                    <strong>Next Steps:</strong><br>
+                    1. Visit your preview site: <a href="https://nhbea-64cab--test-preview-82vbgoyp.web.app/conference" target="_blank">Preview Conference Page</a><br>
+                    2. Or check the live site: <a href="https://www.nhbea.org/conference" target="_blank">Live Conference Page</a><br>
+                    3. Verify data in Firebase Console: <a href="https://console.firebase.google.com/project/nhbea-64cab/firestore/databases/-default-/data/~2Fconference~2Fconference-2025" target="_blank">Firestore Console</a>
+                `;
+
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '❌ Error importing data: ' + error.message;
+
+                detailsEl.style.display = 'block';
+                detailsEl.innerHTML = `
+                    <strong>Error Details:</strong><br>
+                    ${error.stack || error.toString()}
+                    <br><br>
+                    <strong>Troubleshooting:</strong><br>
+                    • Make sure you're logged into Firebase Console in your browser<br>
+                    • Check that you have write permissions to the Firestore database<br>
+                    • Try refreshing the page and importing again
+                `;
+
+                btnEl.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

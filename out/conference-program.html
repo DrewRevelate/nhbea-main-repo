@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHBEA 2025 Annual Conference Program</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: white;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 4px solid #1a365d;
+        }
+
+        .logo-section {
+            margin-bottom: 1rem;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            letter-spacing: -0.05em;
+        }
+
+        .conference-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .conference-theme {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #d69e2e;
+            margin-bottom: 1rem;
+        }
+
+        .conference-date {
+            font-size: 1.1rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .welcome-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-left: 6px solid #1a365d;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #d69e2e;
+        }
+
+        .schedule-table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+        }
+
+        .schedule-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .time {
+            font-weight: 600;
+            color: #1a365d;
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .event-title {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .presenter {
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        .room {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .speaker-card {
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            page-break-inside: avoid;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .speaker-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .speaker-content {
+            flex: 1;
+        }
+
+        .speaker-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 0.25rem;
+        }
+
+        .speaker-title {
+            font-size: 1rem;
+            color: #d69e2e;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .speaker-bio {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        .workshop-title {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+        }
+
+        .vendor-list {
+            columns: 2;
+            column-gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .vendor-item {
+            padding: 0.5rem 0;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 4px solid #1a365d;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .bylaws-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            page-break-before: always;
+        }
+
+        .bylaws-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bylaws-article {
+            margin-bottom: 1.5rem;
+        }
+
+        .bylaws-article-title {
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .bylaws-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .officers-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            page-break-before: always;
+        }
+
+        .officers-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .officer-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .officer-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .officer-position {
+            color: #1a365d;
+            font-weight: 600;
+        }
+
+        .acknowledgements-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .acknowledgements-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .student-group {
+            margin: 1.5rem 0;
+        }
+
+        .student-group-title {
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .student-name {
+            color: #4b5563;
+            padding: 0.25rem 0;
+        }
+
+        @media print {
+            body {
+                padding: 0.25in;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .speaker-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-text">NHBEA</div>
+        </div>
+        <h1 class="conference-title">2025 Annual Conference</h1>
+        <p class="conference-theme">Ignite Your Future in Business Education!</p>
+        <p class="conference-date">October 24, 2025</p>
+    </div>
+
+    <div class="welcome-section">
+        <h2 class="welcome-title">Welcome</h2>
+        <p class="welcome-text">
+            The New Hampshire Business Education Association (NHBEA) is a professional organization dedicated to serving individuals and groups engaged in instruction, research, and dissemination of information for and about business. For over 100 years, NHBEA has been a leader in the development and advancement of business education curriculum and the advocacy of business competencies that are essential in today's global society.
+        </p>
+        <p class="welcome-text">
+            The vision of NHBEA is to collaborate with schools, communities, businesses, and educational leaders at the local, state, and national levels; to achieve universal acknowledgment that business knowledge is a vital component of educating the whole person; and is an essential driver of national economies.
+        </p>
+        <p class="welcome-text">
+            Our membership is comprised of professional educators such as yourself who are immersed in the education of secondary and post-secondary audiences. The span of disciplines that NHBEA accommodates includes areas such as career and technical education (CTE), business education, computer sciences, finance, entrepreneurship, marketing, and other relevant content areas.
+        </p>
+        <p class="welcome-text" style="margin-top: 1rem; font-weight: 600;">
+            Respectfully,<br>
+            NHBEA EXECUTIVE BOARD
+        </p>
+    </div>
+
+    <h2 class="section-title">Conference Schedule</h2>
+
+    <table class="schedule-table">
+        <tr>
+            <td class="time">8:00 - 8:30</td>
+            <td>
+                <div class="event-title">Registration</div>
+                <div class="presenter">Christian Marcello</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">8:45</td>
+            <td>
+                <div class="event-title">Welcome</div>
+                <div class="presenter">Colleen Jennings, MCC VPAA</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">8:50</td>
+            <td>
+                <div class="event-title">Prayer & Pledge</div>
+                <div class="presenter">Michael Magoon, NHBEA Vice President</div>
+                <div class="presenter">Maria Matarazzo, NHBEA Director</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">8:55</td>
+            <td>
+                <div class="event-title">Introduction of Keynote</div>
+                <div class="presenter">Dorothy O'Gara, NHBEA President</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">9:00 - 9:45</td>
+            <td>
+                <div class="event-title">Keynote Address</div>
+                <div class="presenter">Rony Camille</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">10:00</td>
+            <td>
+                <div class="event-title">Workshop Sessions 1 & 2</div>
+                <div class="presenter">Josh Porter <span class="room">(Main 272)</span></div>
+                <div class="presenter">Major Wheelock <span class="room">(Main 274)</span></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">11:00</td>
+            <td>
+                <div class="event-title">Workshop Sessions 3 & 4</div>
+                <div class="presenter">Drew Lambert <span class="room">(Main 272)</span></div>
+                <div class="presenter">Dean Graziano, J.D. <span class="room">(Main 274)</span></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">12:00 - 1:00</td>
+            <td>
+                <div class="event-title">Roundtable Discussions</div>
+                <div class="room">MCC Meeting Room</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">1:00</td>
+            <td>
+                <div class="event-title">Lunch</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">1:30</td>
+            <td>
+                <div class="event-title">Annual Meeting</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">1:35</td>
+            <td>
+                <div class="event-title">Election of 2026 Officers</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">1:45</td>
+            <td>
+                <div class="event-title">Presentation of Awards</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">1:55</td>
+            <td>
+                <div class="event-title">Closing Remarks</div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2 class="section-title">Keynote Speaker</h2>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FRony%20Camille.jpg?alt=media&token=ae278649-c833-4565-8974-854780cdf413" alt="Rony Camille" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Rony Camille</div>
+            <div class="speaker-title">Media Manager, Town of Tyngsboro, MA</div>
+            <p class="speaker-bio">
+                A communications and public affairs executive with 20+ years of experience. My career bridges journalism, digital media, and municipal leadership. At ABC News, I produced and edited stories that reached millions across broadcast and digital platforms. At WBZ NewsRadio/iHeartMedia, I drove more than 1.2 million unique digital views. In municipal leadership for Tyngsborough, Massachusetts, I increased website traffic by 1,800% and secured $250K+ in federal funding to expand civic engagement infrastructure. Today, as Media Program Director in Massachusetts, I oversee $1.2M in reserves, guide staff teams, and modernize platforms that make government more transparent and accessible.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Workshop Presenters</h2>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FDrew%20Lambert.jpg?alt=media&token=f4be56ef-75ed-4612-b62f-9810e7e19c3e" alt="Drew Lambert" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Drew Lambert</div>
+            <div class="speaker-title">Senior Salesforce Engineer, Bevi | Founder, Revelate Operations LLC</div>
+            <div class="workshop-title">Marketing and AI</div>
+            <p class="speaker-bio">
+                Drew Lambert is a Senior Salesforce Engineer at Bevi, where he leads large-scale initiatives in Revenue Operations, enterprise applications, and AI-driven automation. In addition to his leadership at Bevi, Drew is the founder of Revelate Operations LLC, a consulting practice focused on helping organizations unlock growth through RevOps strategy, Salesforce architecture, and intelligent automation.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FJoshua%20Porter.jpg?alt=media&token=52a84fa8-cf5c-4c63-a505-9d691e1bb240" alt="Joshua Porter" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Joshua Porter</div>
+            <div class="speaker-title">Financial Wellness Officer, Jean d'Arc Credit Union</div>
+            <div class="workshop-title">Building Partnerships with Local Businesses</div>
+            <p class="speaker-bio">
+                As the Financial Wellness Officer, Josh oversees the team working in the high school branches and is responsible for the day-to-day operations. Josh has worked for the credit union for 15 years and has spent the last 8 years in his current role. He is a firm believer in the importance of financial education and is passionate about teaching students the tools they need for strong financial futures.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FMajor%20Wheelock.png?alt=media&token=9f8fc30d-df95-40f9-807a-2aca90b6f246" alt="Major Wheelock" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Major Wheelock</div>
+            <div class="speaker-title">ECHS Coordinator, MCC</div>
+            <p class="speaker-bio">
+                Major Wheelock brings 20 years of experience as a successful Leader/Operations Manager with expertise in student success and retention management. He excels at communication with small groups and large audiences, teaching First Year Experience courses as well as undergraduate and graduate business courses.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FDean%20Graziano%2C%20J.D..jpg?alt=media&token=c707d54c-e91c-4492-b319-6fc7a4daf9e1" alt="Dean Graziano" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Dean Graziano, J.D.</div>
+            <div class="speaker-title">Vice President of Corporate Work-Study, Work-Study Programs</div>
+            <p class="speaker-bio">
+                A multi-state award-winning educator with over 29 years in education. In 2017, selected as New Hampshire's Extended Learning Opportunity Coordinator of the Year. His Work-force pilot program in Rochester, NH was singled out by Governor Sununu as the model for the State of NH Career Academies.
+            </p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 class="section-title">Roundtable Discussion Leaders</h2>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FMaria%20Matarzzo.png?alt=media&token=1c50b5a3-4118-4abd-95c9-cdb1758dcf4d" alt="Maria Matarazzo" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Maria Matarazzo</div>
+            <div class="speaker-title">UMass Lowell, Manning School of Business Department</div>
+            <div class="workshop-title">Cellphone and Technology Policies in the Classroom</div>
+            <p class="speaker-bio">
+                Maria Matarazzo is an experienced professor and Chair with a demonstrated history of successfully achieving organizational goals in higher education. She was awarded Teacher of the Year for the state of New Hampshire in Business Education.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FJames%20Dowding.jpg?alt=media&token=4b06efa8-ee4a-4a73-964d-41d80bc95872" alt="James Dowding" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">James Dowding</div>
+            <div class="speaker-title">Business Educator, Nashua High School North</div>
+            <div class="workshop-title">The Global Spin</div>
+            <p class="speaker-bio">
+                A versatile educator with significant and varied academic and business experience. He is currently serving as an Accounting/Finance teacher at the Academy of Finance with the Nashua Technology Center.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FDey%20Barriga.jpg?alt=media&token=40d2a716-c704-498d-8696-74a34f7cddc4" alt="Dey Barriga" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Dey Barriga</div>
+            <div class="speaker-title">Director of Global Engagement, Rivier University</div>
+            <div class="workshop-title">Supporting International Student Enrollment</div>
+            <p class="speaker-bio">
+                Dey Barriga is a seasoned and strategic leader in international education. As Director of the Office of Global Engagement, Dey oversees international student recruitment, education abroad, and student services. Her leadership has driven significant growth in Rivier's international student population.
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <img src="https://firebasestorage.googleapis.com/v0/b/nhbea-64cab.firebasestorage.app/o/public%2Fconference_images%2FJennifer%20Brown.jpg?alt=media&token=8d577783-8311-450f-83a1-f620bd087e17" alt="Jennifer Brown" class="speaker-photo">
+        <div class="speaker-content">
+            <div class="speaker-name">Jennifer Brown</div>
+            <div class="speaker-title">Academic Advisor, Rivier University</div>
+            <div class="workshop-title">Supporting International Student Enrollment</div>
+            <p class="speaker-bio">
+                As the Academic Advisor for the Office of Global Engagement at Rivier University, Jennifer Brown has worked to mentor 2000 international students in her role as a Designated School Official (DSO).
+            </p>
+        </div>
+    </div>
+
+    <div class="speaker-card">
+        <div class="speaker-content">
+            <div class="speaker-name">Catherine Lambert, MS MEd CAGS</div>
+            <div class="speaker-title">Therosa Counseling</div>
+            <div class="workshop-title">Trauma in the Classroom</div>
+            <p class="speaker-bio">
+                As a Licensed Mental Health Counselor in New Hampshire and Massachusetts, and the founder of Therosa Counseling, LLC, I have worked with individuals, couples, and families who have endured deep loss, shame, and hardship. I developed The Scenic Path — a therapeutic framework that blends clinical models with a visual, metaphorical journey toward authenticity.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Conference Vendors</h2>
+    <div class="vendor-list">
+        <div class="vendor-item">NY Life Insurance</div>
+        <div class="vendor-item">Goldman Sachs 10K Small Business</div>
+        <div class="vendor-item">Workforce Training</div>
+        <div class="vendor-item">Stark Brewing Co.</div>
+        <div class="vendor-item">MCC Admissions</div>
+        <div class="vendor-item">ECHS</div>
+        <div class="vendor-item">Jean D'Arc Credit Union</div>
+        <div class="vendor-item">Marshall's</div>
+        <div class="vendor-item">Rivier University</div>
+        <div class="vendor-item">Doubletree</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="bylaws-section">
+        <h2 class="bylaws-title">NEW HAMPSHIRE BUSINESS EDUCATION ASSOCIATION<br>BY-LAWS AND RESPONSIBILITIES</h2>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE I: NAME, PURPOSE, AFFILIATION, AND RELATIONSHIPS</div>
+            <p class="bylaws-text"><strong>Section 1 - NAME:</strong> The name of this organization shall be the New Hampshire Business Education Association (NHBEA).</p>
+            <p class="bylaws-text"><strong>Section 2 - PURPOSE:</strong> The purpose of the organization shall be the advancement of business education in the state of New Hampshire.</p>
+            <p class="bylaws-text"><strong>Section 3 - AFFILIATION:</strong> This organization shall function as an autonomous affiliate of the New Hampshire Career and Technical Association (NHCTA).</p>
+            <p class="bylaws-text"><strong>Section 4 - RELATIONSHIPS:</strong> This organization shall maintain a cooperative relationship with the New Hampshire State Department of Education, the National Education Association-New Hampshire, the Eastern Business Education Association, the National Business Education Association, the Association for Career and Technical Education, and other organizations.</p>
+        </div>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE II: MEMBERSHIP, DUES, AND FISCAL YEAR</div>
+            <p class="bylaws-text"><strong>Section 1 - MEMBERSHIP:</strong> Any person interested in business education or involved in business and industry may become a member of this organization upon payment of the prescribed dues.</p>
+            <p class="bylaws-text"><strong>Section 2 - DUES:</strong> Annual membership dues in the NHBEA shall be set by the Executive Board prior to the annual conference. Dues increases will be approved by a two-thirds (2/3) vote of the Executive Board members present.</p>
+            <p class="bylaws-text"><strong>Section 3 - FISCAL YEAR:</strong> The fiscal year of the NHBEA will be January 1 - December 31.</p>
+        </div>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE III: OFFICERS AND EXECUTIVE BOARD</div>
+            <p class="bylaws-text"><strong>Section 1 - OFFICERS:</strong> The officers of the organization shall be: (1) President (2) Vice President, North and Vice President, South (3) Secretary (4) Treasurer (5) Public Relations Director (6) Past President. These officers shall be elected at the annual conference for a two-year term.</p>
+            <p class="bylaws-text"><strong>Section 3 - EXECUTIVE BOARD:</strong> The Association shall be governed by the Executive Board consisting of the Officers of NHBEA and a minimum of two elected Directors.</p>
+        </div>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE IV: MEETINGS</div>
+            <p class="bylaws-text"><strong>Section 1 - ANNUAL MEETINGS:</strong> An annual meeting of the Association shall be held. Notice of the annual meeting is to be made to all current members.</p>
+            <p class="bylaws-text"><strong>Section 2:</strong> Special meetings may be called by the President and/or Executive Board.</p>
+        </div>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE V: AWARDS</div>
+            <p class="bylaws-text"><strong>Section 1 - ACHIEVEMENT AWARD:</strong> The Achievement Award may be presented at the Annual Meeting.</p>
+            <p class="bylaws-text"><strong>Section 2 - DR. BURTON S. KALISKI SERVICE AWARD:</strong> This award is presented in recognition of a retired or retiring business educator that has served the community, their students, and their institutions with distinction.</p>
+            <p class="bylaws-text"><strong>Section 3 - DONALD H. PETERSON PROFESSIONAL DEVELOPMENT AWARD:</strong> The Donald H. Peterson Professional Development Award may be presented at the Annual Meeting.</p>
+        </div>
+
+        <div class="bylaws-article">
+            <div class="bylaws-article-title">ARTICLE VI: AMENDMENTS</div>
+            <p class="bylaws-text">Notice of proposed changes to these By-Laws and Responsibilities shall be made to current members at the Annual Meeting at which time these By-Laws and Responsibilities may be amended by a two-thirds (2/3) vote of the members present.</p>
+            <p class="bylaws-text" style="margin-top: 1rem;"><strong>REVISION HISTORY:</strong><br>Draft: July 18, 2014<br>Approved: October 24, 2024</p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="officers-section">
+        <h2 class="officers-title">NHBEA Proposed Slate of Officers, 2026</h2>
+
+        <div class="officer-item">
+            <span class="officer-name">James Dowding</span>
+            <span class="officer-position">President</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Michael Magoon</span>
+            <span class="officer-position">Vice President</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Sarah Compagna</span>
+            <span class="officer-position">Secretary</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Christian Marcello</span>
+            <span class="officer-position">Treasurer</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Dottie O'Gara</span>
+            <span class="officer-position">Past President</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Maria Martarzzo</span>
+            <span class="officer-position">Director</span>
+        </div>
+        <div class="officer-item">
+            <span class="officer-name">Diane Santos</span>
+            <span class="officer-position">Public Relations and Media</span>
+        </div>
+
+        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #4b5563;">
+            Nominations will also be considered from members
+        </p>
+    </div>
+
+    <div class="acknowledgements-section">
+        <h2 class="acknowledgements-title">Acknowledgement</h2>
+
+        <p style="color: #4b5563; margin-bottom: 2rem;">
+            The NHBEA Board would like to acknowledge the contributions of the following business students to the production of the 102<sup>nd</sup> Annual NHBEA Conference.
+        </p>
+
+        <div class="student-group">
+            <div class="student-group-title">Nashua High School North Finance Students</div>
+            <div class="student-name">Guilherme Sakes Moraes</div>
+            <div class="student-name">Tommy Dratch</div>
+            <div class="student-name">Keya Patel</div>
+            <div class="student-name">Alicia Robinson</div>
+            <div class="student-name">Reese Baxter</div>
+        </div>
+
+        <div class="student-group">
+            <div class="student-group-title">Alvirne High School Marketing Students</div>
+            <div class="student-name">Chase Noone</div>
+            <div class="student-name">Ethan Dudley</div>
+            <div class="student-name">Patrick Lloyd</div>
+            <div class="student-name">Alex Drwon</div>
+            <div class="student-name">Aidan Nichols</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>New Hampshire Business Education Association</strong></p>
+        <p>Advancing Business Education for Over 100 Years</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">For more information, visit nhbea.org</p>
+    </div>
+</body>
+</html>

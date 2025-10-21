@@ -1,0 +1,2019 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Updated serif font to Merriweather for better web compatibility */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+
+/* The following @tailwind directives require Tailwind CSS processing.
+   If you see an "Unknown at rule @tailwind" error, make sure your build process includes Tailwind CSS (via PostCSS or Tailwind CLI).
+   If you are not using Tailwind, remove these lines. */
+/* Removed @tailwind directives because Tailwind CSS is not being processed */
+
+/* Conference Theme Animations */
+@layer utilities {
+  /* Mobile-specific optimizations */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* Prevent text size adjustment on mobile */
+  .text-size-adjust-none {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+  
+  /* Safe area handling for mobile devices */
+  .safe-area-inset {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Mobile navigation optimizations */
+  .mobile-nav-button {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  .mobile-nav-link {
+    min-height: 48px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Ensure mobile menu appears above everything */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  
+  .mobile-menu-backdrop.open {
+    opacity: 1;
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+    }
+    50% {
+      transform: translateY(-10px) translateX(-10px);
+    }
+    75% {
+      transform: translateY(-15px) translateX(5px);
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+    }
+    to { 
+      opacity: 1; 
+    }
+  }
+
+  /* Modal specific animations */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.4s ease-out;
+  }
+
+  /* Awards Section Animations */
+  @keyframes cardEntrance {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes urgentPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(220, 38, 38, 0);
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  @keyframes scaleBounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-card-entrance {
+    animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-urgent-pulse {
+    animation: urgentPulse 2s infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 0.8s ease-out;
+  }
+
+  .animate-scale-bounce {
+    animation: scaleBounce 0.3s ease-out;
+  }
+
+  /* Scroll behavior */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .animation-delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 0.8s ease-out;
+  }
+}
+
+:root {
+    /* ==========================================================================
+       NHBEA Conservative Royal Blue Brand Design Token System
+       ========================================================================== */
+    
+    /* Conservative Royal Blue Brand Palette - 60-30-10 Color Rule
+       This system replaces the previous navy/gold academic theme with a 
+       professional royal blue brand system that maintains authority while 
+       being more approachable and modern.
+       
+       Usage Guidelines:
+       - Primary Royal Blue (60%): Use for headers, CTAs, navigation, key UI elements
+       - Neutral Grays (30%): Use for text, backgrounds, borders, layout structure  
+       - Accent Colors (10%): Use sparingly for highlights, success states, special CTAs
+    */
+    /* Primary Navy System (60% usage) - Professional & Mature */
+    --nhbea-royal-blue: #1a365d;        /* Deep professional navy */
+    --nhbea-royal-blue-dark: #0f2242;   /* Darker navy for emphasis */
+    --nhbea-royal-blue-deeper: #0c1a33; /* Deepest navy for authority */
+    --nhbea-royal-blue-light: #2c5282;  /* Medium navy for interactive */
+    --nhbea-royal-blue-lighter: #3b5a7e;/* Lighter navy for backgrounds */
+    --nhbea-royal-blue-subtle: #cbd5e1; /* Light gray-blue for subtle areas */
+    
+    /* Neutral Foundation (30% usage) - Enhanced for WCAG compliance */
+    --nhbea-gray-50: #f8fafc;
+    --nhbea-gray-100: #f1f5f9;
+    --nhbea-gray-200: #e2e8f0;
+    --nhbea-gray-300: #cbd5e1;
+    --nhbea-gray-400: #6b7280;  /* Darkened for better contrast */
+    --nhbea-gray-500: #4b5563;  /* Darkened for better contrast */
+    --nhbea-gray-600: #374151;  /* Darkened for better contrast */
+    --nhbea-gray-700: #1f2937;  /* Darkened for better contrast */
+    --nhbea-gray-800: #111827;  /* Darkened for better contrast */
+    --nhbea-gray-900: #030712;  /* Darkened for better contrast */
+    
+    /* Accent Colors (10% usage) - Muted & Professional */
+    --nhbea-accent-orange: #d97706;     /* Muted amber instead of bright orange */
+    --nhbea-accent-orange-light: #f59e0b;
+    --nhbea-accent-orange-dark: #b45309;
+    --nhbea-accent-gold: #d69e2e;      /* Sophisticated gold */
+    --nhbea-accent-gold-light: #ecc94b;
+    --nhbea-accent-gold-dark: #b7791f;
+    --nhbea-accent-green: #059669;
+    --nhbea-accent-green-light: #10b981;
+    --nhbea-accent-green-dark: #047857;
+    
+    /* Status Colors */
+    --nhbea-success: #10b981;
+    --nhbea-warning: #f59e0b;
+    --nhbea-error: #ef4444;
+    --nhbea-info: #3b82f6;
+    
+    /* ==========================================================================
+       Three-Layer Design Token Architecture
+       ========================================================================== */
+    
+    /* Layer 1: Brand Level Tokens
+       These map directly to brand colors and should rarely change.
+       Used for defining the core brand identity in code.
+    */
+    --brand-primary: var(--nhbea-royal-blue);
+    --brand-primary-dark: var(--nhbea-royal-blue-dark);
+    --brand-primary-light: var(--nhbea-royal-blue-light);
+    --brand-accent-primary: var(--nhbea-accent-gold);
+    --brand-accent-secondary: var(--nhbea-accent-orange);
+    --brand-accent-tertiary: var(--nhbea-accent-green);
+    
+    /* Layer 2: Semantic Color Tokens
+       These provide meaning-based abstractions (text, background, border colors).
+       Change these to adjust the overall look while maintaining brand consistency.
+       All text colors meet WCAG AA standards (4.5:1 for normal, 3:1 for large text)
+    */
+    --color-text-primary: var(--nhbea-gray-900);     /* 15.3:1 contrast on white */
+    --color-text-secondary: var(--nhbea-gray-700);   /* 12.6:1 contrast on white */
+    --color-text-muted: var(--nhbea-gray-600);       /* 7.0:1 contrast on white */
+    --color-bg-primary: var(--nhbea-gray-50);
+    --color-bg-secondary: var(--nhbea-gray-100);
+    --color-bg-accent: var(--nhbea-royal-blue-subtle);
+    --color-border-primary: var(--nhbea-gray-200);
+    --color-border-secondary: var(--nhbea-gray-300);
+    
+    /* ShadCN/UI Compatible Tokens (HSL format for Tailwind) */
+    --background: 220 14% 96%; /* --nhbea-gray-50 equivalent */
+    --foreground: 220 13% 18%; /* --nhbea-gray-800 equivalent */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 220 13% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+    --primary: 217 91% 60%; /* --nhbea-royal-blue equivalent */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 13% 95%; /* --nhbea-gray-100 equivalent */
+    --secondary-foreground: 220 13% 20%; /* Darker for better contrast (WCAG AA) */
+    --muted: 220 13% 95%; /* --nhbea-gray-100 equivalent */  
+    --muted-foreground: 220 13% 25%; /* Darker for better contrast (WCAG AA) */
+    --accent: 45 69% 54%; /* --nhbea-accent-gold equivalent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%; /* --nhbea-error equivalent */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%; /* --nhbea-gray-200 equivalent */
+    --input: 220 13% 91%; /* --nhbea-gray-200 equivalent */
+    --ring: 217 91% 60%; /* --nhbea-royal-blue equivalent */
+    --radius: 0.375rem;
+    
+    /* ==========================================================================
+       Typography System - Inter + Georgia Professional Hierarchy
+       ========================================================================== */
+    
+    /* Font Families with Comprehensive Fallbacks */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-secondary: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+
+@layer utilities {
+  /* Brand utility helpers for backgrounds, text, borders, gradients */
+  .brand-bg-primary { background-color: var(--nhbea-royal-blue); }
+  .brand-bg-primary-deep { background-color: var(--nhbea-royal-blue-dark); }
+  .brand-bg-accent { background-color: var(--nhbea-accent-gold); }
+
+  .brand-text-primary { color: var(--nhbea-royal-blue); }
+  .brand-text-primary-deep { color: var(--nhbea-royal-blue-dark); }
+  .brand-text-accent { color: var(--nhbea-accent-gold); }
+
+  .brand-border-primary { border-color: var(--nhbea-royal-blue); }
+  .brand-border-accent { border-color: var(--nhbea-accent-gold); }
+
+  .brand-gradient-primary { background-image: linear-gradient(135deg, var(--nhbea-royal-blue), var(--nhbea-royal-blue-dark)); }
+  .brand-gradient-accent { background-image: linear-gradient(135deg, var(--nhbea-accent-gold), var(--nhbea-accent-orange)); }
+}
+/* Branded text selection for accessibility and brand alignment */
+::selection {
+  background: rgba(26, 54, 93, 0.18); /* royal blue with transparency */
+  color: var(--nhbea-royal-blue-dark);
+}
+
+    
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    
+    /* Modular Scale Typography (1.25 ratio) */
+    --text-xs: 0.75rem;      /* 12px - Small labels, captions */
+    --text-sm: 0.875rem;     /* 14px - Body text, forms */
+    --text-base: 1rem;       /* 16px - Standard body text */
+    --text-lg: 1.125rem;     /* 18px - Large body text */
+    --text-xl: 1.25rem;      /* 20px - Small headings */
+    --text-2xl: 1.5rem;      /* 24px - Section headings */
+    --text-3xl: 1.875rem;    /* 30px - Page headings */
+    --text-4xl: 2.25rem;     /* 36px - Major headings */
+    --text-5xl: 3rem;        /* 48px - Hero headings */
+    --text-6xl: 3.75rem;     /* 60px - Display headings */
+    
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Comprehensive Spacing System */
+    --space-xs: 0.25rem;    /* 4px */
+    --space-sm: 0.5rem;     /* 8px */
+    --space-md: 0.75rem;    /* 12px */
+    --space-lg: 1rem;       /* 16px */
+    --space-xl: 1.5rem;     /* 24px */
+    --space-2xl: 2rem;      /* 32px */
+    --space-3xl: 2.5rem;    /* 40px */
+    --space-4xl: 3rem;      /* 48px */
+    --space-5xl: 4rem;      /* 64px */
+    --space-6xl: 5rem;      /* 80px */
+    
+    /* Border Radius Scale */
+    --radius-sm: 0.125rem;  /* 2px */
+    --radius-md: 0.25rem;   /* 4px */
+    --radius-lg: 0.375rem;  /* 6px */
+    --radius-xl: 0.5rem;    /* 8px */
+    --radius-2xl: 0.75rem;  /* 12px */
+    --radius-3xl: 1rem;     /* 16px */
+    --radius-full: 9999px;  /* pill shape */
+    
+    /* Brand-Consistent Shadow System */
+    --shadow-brand: 0 1px 3px 0 rgba(37, 99, 235, 0.1), 0 1px 2px -1px rgba(37, 99, 235, 0.1);
+    --shadow-accent: 0 1px 3px 0 rgba(234, 88, 12, 0.1), 0 1px 2px -1px rgba(234, 88, 12, 0.1);
+    --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    
+    /* Animation Tokens */
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+    
+    /* Layer 3: Component-Specific Tokens
+       These define specific UI component styling.
+       Most granular level - change these to update individual component appearance.
+    */
+    --button-primary-bg: var(--brand-primary);
+    --button-primary-hover: var(--brand-primary-dark);
+    --button-primary-text: var(--nhbea-gray-50);
+    --button-secondary-bg: var(--color-bg-secondary);
+    --button-secondary-hover: var(--nhbea-gray-200);
+    --button-secondary-text: var(--color-text-primary);
+    --card-bg: var(--nhbea-gray-50);
+    --card-border: var(--color-border-primary);
+    --input-bg: var(--nhbea-gray-50);
+    --input-border: var(--color-border-primary);
+    --input-focus: var(--brand-primary);
+
+    --button-default-bg: var(--primary);
+    --button-default-text: var(--primary-foreground);
+    --button-default-hover-bg: hsl(var(--primary) / 0.9);
+
+    --button-destructive-bg: var(--destructive);
+    --button-destructive-text: var(--destructive-foreground);
+    --button-destructive-hover-bg: hsl(var(--destructive) / 0.9);
+
+    --button-outline-border: var(--input);
+    --button-outline-bg: var(--background);
+    --button-outline-hover-bg: var(--accent);
+    --button-outline-hover-text: var(--accent-foreground);
+
+    --button-secondary-bg: var(--secondary);
+    --button-secondary-text: var(--secondary-foreground);
+    --button-secondary-hover-bg: hsl(var(--secondary) / 0.8);
+
+    --button-ghost-hover-bg: var(--accent);
+    --button-ghost-hover-text: var(--accent-foreground);
+
+    --button-link-text: var(--primary);
+  }
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-primary);
+    font-weight: var(--font-light);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    letter-spacing: -0.025em;
+    line-height: var(--leading-tight);
+  }
+  
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-normal);
+    letter-spacing: -0.05em;
+    color: var(--nhbea-royal-blue-deeper);
+  }
+  
+  h2 {
+    font-size: var(--text-3xl);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  h3 {
+    font-size: var(--text-2xl);
+    color: var(--nhbea-royal-blue-dark);
+  }
+  
+  h4 {
+    font-size: var(--text-xl);
+    color: var(--nhbea-royal-blue-dark);
+  }
+  
+  h5 {
+    font-size: var(--text-lg);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  h6 {
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  p {
+    font-weight: var(--font-normal);
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    letter-spacing: 0.01em;
+  }
+  
+  /* Only apply link styles to actual text links, not buttons */
+  a:not(.btn):not([class*="button"]):not([class*="bg-"]):not([class*="px-"]) {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+  }
+  
+  a:not(.btn):not([class*="button"]):not([class*="bg-"]):not([class*="px-"]):hover {
+    color: hsl(var(--primary) / 0.8);
+  }
+
+  /* Ensure button-style links preserve their intended text colors */
+  a[class*="bg-"], 
+  a[class*="px-"], 
+  a.btn,
+  a[class*="button"] {
+    text-decoration: none;
+  }
+  
+  a[class*="bg-"]:hover, 
+  a[class*="px-"]:hover, 
+  a.btn:hover,
+  a[class*="button"]:hover {
+    /* No change to color on hover, as it's set by the button class */
+  }
+}
+
+@layer components {
+  /* ==========================================================================
+     Semantic Typography Hierarchy Classes
+     ========================================================================== */
+  
+  /* Heading Classes - Inter Font Family */
+  .heading-1 {
+    font-family: var(--font-primary);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.05em;
+    color: var(--nhbea-royal-blue-deeper);
+  }
+  
+  .heading-2 {
+    font-family: var(--font-primary);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.025em;
+    color: var(--nhbea-royal-blue);
+  }
+  
+  .heading-3 {
+    font-family: var(--font-primary);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.025em;
+    color: var(--nhbea-royal-blue-dark);
+  }
+  
+  .heading-4 {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-royal-blue-dark);
+  }
+  
+  .heading-5 {
+    font-family: var(--font-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  .heading-6 {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  /* Body Text Classes */
+  .body-text {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: var(--nhbea-gray-800);
+  }
+  
+  /* Long-form Content Text - Georgia Font Family */
+  .content-text {
+    font-family: var(--font-secondary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-loose);
+    color: var(--nhbea-gray-800);
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  }
+  
+  /* Supporting Text Classes */
+  .text-small {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-gray-700);
+  }
+  
+  .text-caption {
+    font-family: var(--font-primary);
+    font-size: var(--text-xs);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-gray-600);
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cross-browser compatibility fixes */
+@supports not (backdrop-filter: blur(10px)) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .animate-bounce {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: bounce;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+}
+
+/* Edge-specific fixes */
+@supports (-ms-ime-align:auto) {
+  .rounded-xl {
+    border-radius: 12px;
+  }
+  
+  .rounded-2xl {
+    border-radius: 16px;
+  }
+}
+
+/* Fallbacks for older browsers */
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-t {
+  background-image: linear-gradient(90deg, var(--nhbea-royal-blue), var(--nhbea-royal-blue-light));
+}
+
+/* IE11 fallbacks (if needed) */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .flex {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .items-center {
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  
+  .justify-center {
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Responsive Typography Adjustments
+   ========================================================================== */
+
+/* Mobile Breakpoint Adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+  :root {
+    /* Scale down larger typography for mobile */
+    --text-4xl: 2rem;        /* 32px - Smaller hero text on mobile */
+    --text-3xl: 1.5rem;      /* 24px - Adjusted section headings */
+    --text-2xl: 1.375rem;    /* 22px - Smaller subsection headings */
+    --text-xl: 1.125rem;     /* 18px - Adjusted small headings */
+  }
+  
+  .heading-1 {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.025em; /* Reduce letter spacing on mobile */
+  }
+  
+  .heading-2 {
+    font-size: var(--text-3xl);
+  }
+  
+  .heading-3 {
+    font-size: var(--text-2xl);
+  }
+  
+  .content-text {
+    font-size: var(--text-base); /* Use smaller font for mobile reading */
+    line-height: var(--leading-relaxed);
+  }
+}
+
+/* Small Screen Adjustments (max-width: 480px) */
+@media (max-width: 480px) {
+  :root {
+    /* Further reduce for small screens */
+    --text-4xl: 1.75rem;     /* 28px - Further reduced for small screens */
+    --text-3xl: 1.375rem;    /* 22px - Compact headings */
+    --text-2xl: 1.25rem;     /* 20px - Smaller subsections */
+  }
+  
+  .heading-1 {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.02em;
+  }
+  
+  .heading-2 {
+    font-size: var(--text-3xl);
+  }
+  
+  .heading-3 {
+    font-size: var(--text-2xl);
+  }
+  
+  .body-text,
+  .content-text {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+}
+
+/* Brand-Consistent Professional Component Styles */
+@layer components {
+  /* Enhanced Card Component System - Royal Blue Accent Reveals */
+  .nhbea-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-slow) var(--ease-standard);
+  }
+  
+  .nhbea-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--nhbea-royal-blue), var(--nhbea-royal-blue-light));
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-standard);
+  }
+  
+  .nhbea-card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+  
+  .nhbea-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Featured Card - Royal Blue Gradient Background */
+  .nhbea-card-featured {
+    background: linear-gradient(135deg, var(--nhbea-royal-blue) 0%, var(--nhbea-royal-blue-dark) 100%);
+    color: var(--nhbea-gray-50);
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nhbea-card-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--nhbea-accent-gold), var(--nhbea-accent-gold-light));
+    opacity: 1;
+  }
+  
+  .nhbea-card-featured:hover {
+    background: linear-gradient(135deg, var(--nhbea-royal-blue-dark) 0%, var(--nhbea-royal-blue-deeper) 100%);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+  }
+  
+  /* Interactive Card - Enhanced Micro-interactions */
+  .nhbea-card-interactive {
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    border: 2px solid transparent;
+  }
+  
+  .nhbea-card-interactive:hover {
+    border-color: var(--nhbea-royal-blue-light);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-large);
+  }
+  
+  .nhbea-card-interactive:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .nhbea-card-interactive:focus {
+    outline: none;
+    border-color: var(--nhbea-royal-blue);
+    box-shadow: var(--shadow-medium), 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+  
+  /* Card with Accent Bar */
+  .nhbea-card-accent {
+    border-left: 6px solid var(--nhbea-royal-blue);
+    padding-left: calc(var(--space-2xl) - 6px);
+  }
+  
+  .nhbea-card-accent.success {
+    border-left-color: var(--nhbea-success);
+  }
+  
+  .nhbea-card-accent.warning {
+    border-left-color: var(--nhbea-warning);
+  }
+  
+  .nhbea-card-accent.error {
+    border-left-color: var(--nhbea-error);
+  }
+  
+  /* Card Header */
+  .nhbea-card-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--nhbea-gray-200);
+  }
+  
+  .dark .nhbea-card-header {
+    border-bottom-color: var(--nhbea-gray-700);
+  }
+  
+  .nhbea-card-title {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    font-weight: var(--font-normal);
+    color: var(--nhbea-royal-blue-dark);
+    margin: 0 0 var(--space-sm) 0;
+    line-height: var(--leading-tight);
+  }
+  
+  .dark .nhbea-card-title {
+    color: var(--nhbea-royal-blue-light);
+  }
+  
+  .nhbea-card-subtitle {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    color: var(--nhbea-gray-600);
+    margin: 0;
+  }
+  
+  .dark .nhbea-card-subtitle {
+    color: var(--nhbea-gray-400);
+  }
+  
+  /* Card Content */
+  .nhbea-card-content {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    line-height: var(--leading-relaxed);
+  }
+  
+  /* Card Footer */
+  .nhbea-card-footer {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--nhbea-gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  .dark .nhbea-card-footer {
+    border-top-color: var(--nhbea-gray-700);
+  }
+  
+  /* Enhanced Button System - Conservative Royal Blue Brand */
+  .nhbea-button-primary {
+    background: var(--nhbea-royal-blue);
+    color: var(--nhbea-gray-50);
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: all var(--duration-slow) var(--ease-standard);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .nhbea-button-primary:hover {
+    background: var(--nhbea-royal-blue-dark);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-1px);
+  }
+  
+  .nhbea-button-primary:focus {
+    outline: none;
+    box-shadow: var(--shadow-medium), 0 0 0 4px rgba(37, 99, 235, 0.2);
+  }
+  
+  .nhbea-button-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-brand);
+  }
+  
+  .nhbea-button-secondary {
+    background: transparent;
+    color: var(--nhbea-royal-blue);
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-xl);
+    border: 2px solid var(--nhbea-royal-blue);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: all var(--duration-slow) var(--ease-standard);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .nhbea-button-secondary:hover {
+    background: var(--nhbea-royal-blue);
+    color: var(--nhbea-gray-50);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-1px);
+  }
+  
+  .nhbea-button-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  }
+  
+  .nhbea-button-secondary:active {
+    transform: translateY(0);
+  }
+  
+  /* CTA Button - Warm Gold Accent (10% usage rule) */
+  .nhbea-button-cta {
+    background: var(--nhbea-accent-gold-dark);
+    color: white !important; /* Ensure white text on gold background */
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: all var(--duration-slow) var(--ease-standard);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .nhbea-button-cta:hover {
+    background: var(--nhbea-accent-gold);
+    color: white !important;
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-1px);
+  }
+  
+  .nhbea-button-cta:focus {
+    outline: none;
+    color: white !important;
+    box-shadow: var(--shadow-medium), 0 0 0 4px rgba(234, 88, 12, 0.2);
+  }
+  
+  .nhbea-button-cta:active {
+    transform: translateY(-1px);
+    color: white !important;
+    box-shadow: var(--shadow-accent);
+  }
+  
+  /* Ghost Button - Subtle Brand Integration */
+  .nhbea-button-ghost {
+    background: transparent;
+    color: var(--nhbea-royal-blue);
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .nhbea-button-ghost:hover {
+    background: var(--nhbea-royal-blue-subtle);
+    color: var(--nhbea-royal-blue-dark);
+    box-shadow: var(--shadow-subtle);
+  }
+  
+  .nhbea-button-ghost:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+  
+  /* Button Size Variants */
+  .nhbea-button-sm {
+    font-size: var(--text-sm);
+    padding: var(--space-sm) var(--space-lg);
+    min-height: 36px;
+  }
+  
+  .nhbea-button-md {
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-xl);
+    min-height: 44px;
+  }
+  
+  .nhbea-button-lg {
+    font-size: var(--text-lg);
+    padding: var(--space-lg) var(--space-2xl);
+    min-height: 52px;
+    font-weight: var(--font-normal);
+  }
+  
+  /* Enhanced Form Components - Brand-Consistent Styling */
+  .nhbea-input {
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    color: var(--color-text-primary);
+    transition: all var(--duration-normal) var(--ease-standard);
+    width: 100%;
+    min-height: 44px;
+  }
+  
+  .nhbea-input:focus {
+    border-color: var(--nhbea-royal-blue);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    outline: none;
+  }
+  
+  .nhbea-input:hover {
+    border-color: var(--nhbea-royal-blue-light);
+  }
+  
+  .nhbea-input::placeholder {
+    color: var(--nhbea-gray-400);
+    font-weight: var(--font-normal);
+  }
+  
+  .nhbea-input:disabled {
+    background: var(--nhbea-gray-100);
+    border-color: var(--nhbea-gray-300);
+    color: var(--nhbea-gray-500);
+    cursor: not-allowed;
+  }
+  
+  /* Enhanced Utility Classes - Brand Integration */
+  .nhbea-section {
+    padding: var(--space-6xl) var(--space-lg);
+    position: relative;
+  }
+  
+  .nhbea-section-compact {
+    padding: var(--space-4xl) var(--space-lg);
+  }
+  
+  .nhbea-section-hero {
+    padding: var(--space-6xl) var(--space-lg);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nhbea-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+  }
+  
+  .nhbea-container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .nhbea-container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* Enhanced Text Utilities */
+  .nhbea-text-large {
+    font-family: var(--font-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: var(--nhbea-gray-700);
+  }
+  
+  .nhbea-text-small {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-gray-600);
+  }
+  
+  .nhbea-text-caption {
+    font-family: var(--font-primary);
+    font-size: var(--text-xs);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: var(--nhbea-gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Enhanced Gradient Text */
+  .nhbea-gradient-text {
+    background: linear-gradient(135deg, var(--nhbea-royal-blue) 0%, var(--nhbea-royal-blue-light) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: var(--font-bold);
+  }
+  
+  .nhbea-gradient-text-accent {
+    background: linear-gradient(135deg, var(--nhbea-accent-orange) 0%, var(--nhbea-accent-gold) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: var(--font-bold);
+  }
+  
+  /* Enhanced Hero Sections with Brand Gradients */
+  .nhbea-hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--nhbea-gray-50) 0%, var(--color-bg-primary) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nhbea-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .nhbea-academic-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--nhbea-royal-blue-dark) 100%);
+    color: var(--nhbea-gray-50);
+    position: relative;
+  }
+  
+  .nhbea-awards-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--nhbea-gray-50) 0%, var(--color-bg-secondary) 50%, var(--nhbea-gray-200) 100%);
+    position: relative;
+  }
+  
+  .nhbea-awards-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(234, 88, 12, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  /* Enhanced Navigation Components - Royal Blue Brand System */
+  .nhbea-nav-link {
+    font-family: var(--font-primary);
+    font-weight: var(--font-medium);
+    font-size: var(--text-base);
+    color: var(--nhbea-gray-700);
+    text-decoration: none;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-lg);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 0 var(--spacing-1);
+    border: 1px solid transparent;
+  }
+  
+  .nhbea-nav-link:hover {
+    color: var(--nhbea-royal-blue);
+    background: var(--nhbea-royal-blue-subtle);
+    border-color: var(--nhbea-royal-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  }
+  
+  .nhbea-nav-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    color: var(--nhbea-royal-blue);
+  }
+  
+  .nhbea-nav-link.active {
+    color: var(--nhbea-royal-blue);
+    font-weight: var(--font-semibold);
+    background: var(--nhbea-royal-blue-subtle);
+    border-color: var(--nhbea-royal-blue-light);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  }
+  
+  .nhbea-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--nhbea-royal-blue), var(--nhbea-royal-blue-light));
+    border-radius: var(--radius-full);
+    animation: slideIn 0.4s var(--ease-decelerate);
+    box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3);
+  }
+  
+  /* Mobile Navigation Enhancements */
+  .nhbea-nav-mobile {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--nhbea-gray-200);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-large);
+    padding: var(--space-lg);
+  }
+  
+  .dark .nhbea-nav-mobile {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: var(--nhbea-gray-700);
+  }
+  
+  /* Navigation Dropdown Menus */
+  .nhbea-nav-dropdown {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--nhbea-gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: var(--spacing-2);
+    margin-top: var(--spacing-2);
+    min-width: 240px;
+    transform-origin: top right;
+  }
+  
+  .dark .nhbea-nav-dropdown {
+    background: var(--nhbea-gray-800);
+    border-color: var(--nhbea-gray-700);
+  }
+  
+  .nhbea-nav-dropdown-item {
+    font-family: var(--font-primary);
+    font-weight: var(--font-medium);
+    font-size: var(--text-sm);
+    color: var(--nhbea-gray-800);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    text-decoration: none;
+    position: relative;
+    border: 1px solid transparent;
+  }
+  
+  .nhbea-nav-dropdown-item:hover {
+    background: var(--nhbea-royal-blue-subtle);
+    border-color: var(--nhbea-royal-blue-light);
+    color: var(--nhbea-royal-blue-dark);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  }
+  
+  .dark .nhbea-nav-dropdown-item {
+    color: var(--nhbea-gray-300);
+  }
+  
+  .dark .nhbea-nav-dropdown-item:hover {
+    color: var(--nhbea-royal-blue-light);
+  }
+
+  /* Sponsors Ticker Animation */
+  .ticker-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .ticker-content {
+    display: inline-flex;
+    animation: tickerScroll 80s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker-container:hover .ticker-content {
+    animation-play-state: paused;
+  }
+
+  .ticker-container.pause-animation .ticker-content {
+    animation-play-state: paused;
+  }
+
+  /* Ensure smooth performance */
+  .ticker-content > * {
+    flex-shrink: 0;
+  }
+}
+
+/* Subtle Animation Utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .7;
+  }
+}
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60%;
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Form Styling */
+.nhbea-form-group > * + * {
+  margin-top: 0.5rem; /* Equivalent to Tailwind's space-y-2 */
+}
+
+.nhbea-form-label {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--nhbea-gray-800);
+  margin-bottom: var(--space-sm);
+  line-height: var(--leading-normal);
+}
+
+.nhbea-form-input {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--color-text-primary);
+  transition: all var(--duration-normal) var(--ease-standard);
+  width: 100%;
+  min-height: 44px;
+}
+
+
+.nhbea-form-select:focus {
+  border-color: var(--nhbea-royal-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* Enhanced Textarea Component */
+.nhbea-form-textarea {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  transition: all var(--duration-normal) var(--ease-standard);
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  line-height: var(--leading-relaxed);
+}
+
+.nhbea-form-textarea:focus {
+  border-color: var(--nhbea-royal-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* Form Success Message */
+.nhbea-form-success {
+  font-family: var(--font-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--nhbea-success);
+  margin-top: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Form Error Message */
+.nhbea-form-error {
+  font-family: var(--font-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--nhbea-error);
+  margin-top: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Form Field Wrapper */
+.nhbea-form-field {
+  margin-bottom: var(--space-lg);
+}
+
+/* Required Field Indicator */
+.nhbea-form-required::after {
+  content: '*';
+  color: var(--nhbea-error);
+  margin-left: var(--space-xs);
+  font-weight: var(--font-bold);
+}
+
+/* ==========================================================================
+   Responsive Design Token Adjustments
+   ========================================================================== */
+
+/* Mobile Responsiveness with Design Token Adjustments
+   Adjusts spacing and visual hierarchy for optimal mobile experience while 
+   maintaining brand consistency across all screen sizes.
+*/
+@media (max-width: 768px) {
+  :root {
+    /* Mobile-specific spacing adjustments */
+    --space-xl: 1.25rem;   /* Reduced from 1.5rem */
+    --space-2xl: 1.5rem;   /* Reduced from 2rem */
+    --space-3xl: 2rem;     /* Reduced from 2.5rem */
+    --space-4xl: 2.5rem;   /* Reduced from 3rem */
+    --space-5xl: 3rem;     /* Reduced from 4rem */
+    --space-6xl: 4rem;     /* Reduced from 5rem */
+    
+    /* Mobile shadow adjustments - more subtle */
+    --shadow-medium: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+    --shadow-large: 0 6px 10px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Enhanced Mobile Component Adjustments */
+  .nhbea-section {
+    padding: var(--space-4xl) var(--space-md);
+  }
+  
+  .nhbea-section-hero {
+    min-height: 50vh;
+    padding: var(--space-4xl) var(--space-md);
+  }
+  
+  .nhbea-container {
+    padding: 0 var(--space-md);
+  }
+  
+  /* Mobile Button Adjustments */
+  .nhbea-button-primary,
+  .nhbea-button-secondary,
+  .nhbea-button-cta,
+  .nhbea-button-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nhbea-button-sm {
+    min-height: 40px;
+  }
+  
+  .nhbea-button-lg {
+    min-height: 48px;
+  }
+  
+  /* Mobile Card Adjustments */
+  .nhbea-card {
+    padding: var(--space-lg);
+  }
+  
+  .nhbea-card-interactive:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  :root {
+    /* Extra small mobile spacing */
+    --space-2xl: 1.25rem;  /* Further reduced */
+    --space-3xl: 1.75rem;  /* Further reduced */
+    --space-4xl: 2rem;     /* Further reduced */
+    --space-5xl: 2.5rem;   /* Further reduced */
+    --space-6xl: 3rem;     /* Further reduced */
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Enhanced Focus and Accessibility */
+.nhbea-focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  transition: box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .nhbea-button-primary {
+    border: 2px solid var(--nhbea-gray-900);
+  }
+  
+  .nhbea-button-secondary {
+    border-width: 3px;
+  }
+  
+  .nhbea-input {
+    border-width: 3px;
+  }
+  
+  .nhbea-card {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .nhbea-card:hover,
+  .nhbea-button-primary:hover,
+  .nhbea-button-secondary:hover,
+  .nhbea-button-cta:hover,
+  .nhbea-button-ghost:hover,
+  .nhbea-card-interactive:hover {
+    transform: none !important;
+  }
+  
+  .nhbea-nav-link.active::after {
+    animation: none !important;
+  }
+}
+
+/* Screen Reader Only Content */
+.nhbea-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip Link for Keyboard Navigation */
+.nhbea-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--nhbea-royal-blue);
+  color: var(--nhbea-gray-50);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  z-index: 1000;
+  transition: top var(--duration-fast) var(--ease-standard);
+}
+
+.nhbea-skip-link:focus {
+  top: 6px;
+}
+
+/* ========================================================================== 
+   WCAG 2.2 AA COMPLIANCE STYLES
+   ========================================================================== */
+
+/* Enhanced Focus Indicators for Keyboard Navigation */
+*:focus-visible {
+  outline: 3px solid var(--nhbea-royal-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--nhbea-royal-blue);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(26, 54, 93, 0.1);
+}
+
+/* Required Field Indicators (not just color) */
+.required-field::after {
+  content: " *";
+  color: var(--nhbea-error);
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+/* Form Field Labels with Better Contrast */
+label {
+  color: var(--nhbea-gray-800);
+  font-weight: 500;
+}
+
+/* Placeholder Text with WCAG Compliant Contrast */
+input::placeholder,
+textarea::placeholder {
+  color: var(--nhbea-gray-600); /* 7:1 contrast ratio */
+  opacity: 1;
+}
+
+/* Error Messages with Icons */
+.error-message {
+  color: var(--nhbea-error);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 1.2em;
+}
+
+/* Success Messages with Icons */
+.success-message {
+  color: var(--nhbea-success);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.success-message::before {
+  content: "✓";
+  font-size: 1.2em;
+}
+
+/* ARIA Live Regions for Dynamic Content */
+[aria-live="polite"],
+[aria-live="assertive"] {
+  position: relative;
+}
+
+/* Character Counter for Text Areas */
+.character-counter {
+  font-size: 0.875rem;
+  color: var(--nhbea-gray-600);
+  text-align: right;
+  margin-top: 4px;
+}
+
+.character-counter.warning {
+  color: var(--nhbea-warning);
+}
+
+.character-counter.error {
+  color: var(--nhbea-error);
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .nhbea-card {
+    border: 1px solid var(--nhbea-gray-300) !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* =============================
+   Enhanced Utilities (2025)
+   ============================= */
+
+/* 1. Modern Scrollbar Styling (Webkit/Blink/Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--nhbea-gray-100);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--nhbea-royal-blue-light), var(--nhbea-royal-blue));
+  border-radius: 8px;
+  border: 2px solid var(--nhbea-gray-100);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nhbea-royal-blue-dark);
+}
+::-webkit-scrollbar-corner {
+  background: var(--nhbea-gray-100);
+}
+
+/* 2. Visually Hidden Utility (for accessibility, screen readers only) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* 3. Reduced Transparency Overlay Utility */
+.nhbea-overlay-bg {
+  background: rgba(26, 54, 93, 0.72); /* Royal blue, 72% opacity */
+  backdrop-filter: blur(2px);
+}
+
+/* 4. Focus-within Utility for Form Groups */
+.focus-within\:nhbea-focus-ring:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+  border-radius: var(--radius-md);
+  transition: box-shadow var(--duration-fast) var(--ease-standard);
+}
+@tailwind utilities;
