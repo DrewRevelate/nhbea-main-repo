@@ -47,9 +47,9 @@
         {
           "id": "rony-camille",
           "name": "Rony Camille",
-          "title": "Media Manager",
+          "title": "Media Program Director",
           "organization": "Town of Tyngsboro, MA",
-          "bio": "A communications and public affairs executive with 20+ years of experience. My career bridges journalism, digital media, and municipal leadership. At ABC News, I produced and edited stories that reached millions across broadcast and digital platforms. At WBZ NewsRadio/iHeartMedia, I drove more than 1.2 million unique digital views. In municipal leadership for Tyngsborough, Massachusetts, I increased website traffic by 1,800% and secured $250K+ in federal funding to expand civic engagement infrastructure.",
+          "bio": "A communications and public affairs executive with 20+ years of experience. My career bridges journalism, digital media, and municipal leadership. At ABC News, I produced and edited stories that reached millions across broadcast and digital platforms. At WBZ NewsRadio/iHeartMedia, I drove more than 1.2 million unique digital views. In municipal leadership for Tyngsborough, Massachusetts, I increased website traffic by 1,800% and secured $250K+ in federal funding to expand civic engagement infrastructure. Today, as Media Program Director in Massachusetts, I oversee $1.2M in reserves, guide staff teams, and modernize platforms that make government more transparent and accessible. At the core, I believe communication is public service — a way to build trust, strengthen engagement, and bring government closer to the people it serves.",
           "websiteURL": "https://www.ronycamille.com/",
           "expertise": ["Communication", "Digital Media", "Public Affairs", "Civic Engagement"],
           "sessionIds": ["keynote-1"],
@@ -61,7 +61,7 @@
           "name": "Stephen Lynn",
           "title": "Vice President, Branch Leader",
           "organization": "Fidelity Investments",
-          "bio": "Steve Lynn is a seasoned financial services executive currently serving as the VP and Branch Leader at Fidelity Investments in Nashua, New Hampshire. With over 17 years at Fidelity, he demonstrates strong commitment to client service and operational excellence. His extensive experience in the financial investment sector has equipped him with a deep understanding of market dynamics and customer needs.",
+          "bio": "Steve Lynn is a seasoned financial services executive currently serving as the VP and Branch Leader at Fidelity Investments in Nashua, New Hampshire. With a robust career spanning over 17 years at Fidelity, he has held various leadership positions, demonstrating a strong commitment to client service and operational excellence. Steve's educational background includes an MBA in Business from Rivier College and a BA in Modern Languages from the University of Massachusetts at Lowell. His extensive experience in the financial investment sector has equipped him with a deep understanding of market dynamics and customer needs. He is known for his strategic vision and ability to lead teams in fast-paced environments. In addition to his professional pursuits, Steve has a passion for mentoring emerging leaders and fostering a culture of continuous improvement within his organization.",
           "expertise": ["Financial Literacy", "Financial Services", "Leadership", "Education"],
           "sessionIds": ["workshop-1"],
           "isKeynote": false,
@@ -72,7 +72,7 @@
           "name": "Major Wheelock",
           "title": "ECHS Coordinator",
           "organization": "MCC ECHS",
-          "bio": "20 years' experience as a successful Leader/Operations Manager. Actively engages with students and successfully manages enrollment and retention. Developed continuous training programs for academic advisors, staff, and faculty. Exceptional decision-making and problem-solving skills in student-focused environments.",
+          "bio": "20 years' experience as a successful Leader/Operations Manager. Actively engages with students and successfully manages enrollment and retention. Excels at communication with small groups and with large audiences (verbal, written and listening). Frequent presenter at new student orientations, open houses, graduation, and award events. Communicates effectively with Admissions, Registrar, Financial Aid, and other student service departments to support students. Developed and provided continuous training for academic advisors, staff members, and faculty. Taught First Year Experience course as well as undergraduate and graduate business courses in class, hybrid and online. Exceptional decision-making and problem-solving skills - being creative, handling challenging situations in a student-focused environment.",
           "expertise": ["Early College Programs", "Student Services", "Operations Management", "Higher Education"],
           "sessionIds": ["workshop-2"],
           "isKeynote": false,
@@ -82,8 +82,8 @@
           "id": "drew-lambert",
           "name": "Drew Lambert",
           "title": "Founder, Senior Salesforce Engineer",
-          "organization": "Revelate Operations LLC / Bevi",
-          "bio": "Drew Lambert is a Senior Salesforce Engineer at Bevi and founder of Revelate Operations LLC. With deep expertise in Salesforce architecture, process optimization, and AI-driven automation, Drew has transformed how teams operate by designing scalable solutions. His consulting practice focuses on helping organizations unlock growth through RevOps strategy and AI agents.",
+          "organization": "Revelate Operations LLC",
+          "bio": "Drew Lambert is a Senior Salesforce Engineer who leads large-scale initiatives in Revenue Operations, enterprise applications, and AI-driven automation. With deep expertise in Salesforce architecture, process optimization, and data integration, Drew has transformed how sales, partner, and customer success teams operate by designing scalable solutions that improve forecasting, streamline contracting, and strengthen compliance. Drew is the founder of Revelate Operations LLC, a consulting practice focused on helping organizations unlock growth through RevOps strategy, Salesforce architecture, and intelligent automation. He has advised nonprofits, startups, and high-growth companies on building resilient data models, integrating platforms like AWS and Salesforce Data Cloud, and deploying AI agents to accelerate sales enablement. A hands-on builder and strategist, Drew brings a rare blend of technical depth and business acumen. His work spans hundreds of Salesforce flows, advanced Lightning components, and enterprise-grade security designs—all in service of creating systems that scale with clarity and efficiency. He is passionate about applying automation and thoughtful design to eliminate friction, empower teams, and align technology with revenue growth.",
           "expertise": ["Marketing", "AI", "Automation", "Salesforce", "Revenue Operations"],
           "sessionIds": ["workshop-3"],
           "isKeynote": false,
@@ -94,7 +94,7 @@
           "name": "Dean Graziano, J.D.",
           "title": "Vice President of Corporate Work-Study",
           "organization": "Rochester Career & Technical Center",
-          "bio": "A multi-state award-winning educator with over 29 years in education. Selected as the State of New Hampshire's Extended Learning Opportunity Coordinator-of-the-Year in 2017. Work-force pilot program in Rochester, NH was singled out by Governor Sununu as the model for the State of NH Career Academies.",
+          "bio": "A multi-state award-winning educator and former Curriculum Specialist Teacher grades 6-12 Social Studies, with over 29 years in education. Selected as the State of New Hampshire's Extended Learning Opportunity Coordinator-of-the-Year in 2017. Work-force pilot program in Rochester, NH was singled out by Governor Sununu as the model for the State of NH Career Academies. Graduated law school in 2011, receiving 5 CALI awards (Evidence, Legal Ethics, Cyber-Law, Business for the Practice of Law, and Law Office Technology) and the 2011 MA School of Law Community Service Award. Developed and implemented a proposal to purchase a Mobile Classroom (a new & remodeled 36' RV, aka M.A.P.s) utilizing Perkins V funding, to bring CTE/WBL programming - leveling the playing field/equity for ALL NH students.",
           "expertise": ["Work-Study Programs", "CTE", "Career Education", "Program Development"],
           "sessionIds": ["workshop-4"],
           "isKeynote": false,
@@ -116,7 +116,7 @@
           "name": "James Dowding",
           "title": "Business Educator",
           "organization": "Nashua High School North",
-          "bio": "A versatile educator with significant academic and business experience. Currently serving as an Accounting/Finance teacher at the Academy of Finance with the Nashua Technology Center.",
+          "bio": "A versatile educator with significant and varied academic and business experience; a demonstrated track record of developing effective training situations for individuals and groups; responsible for budget development and implementation and able to build highly functioning teams to accomplish the goals and vision of the organization. He is currently serving as an Accounting/Finance teacher at the Academy of Finance with the Nashua Technology Center.",
           "expertise": ["Accounting", "Finance", "Business Education", "Global Business"],
           "sessionIds": ["roundtable-2"],
           "isKeynote": false,
@@ -127,7 +127,7 @@
           "name": "Catherine Lambert, MS MEd CAGS",
           "title": "Licensed Mental Health Counselor",
           "organization": "Therosa Counseling",
-          "bio": "Licensed Mental Health Counselor in New Hampshire and Massachusetts, and founder of Therosa Counseling, LLC. She developed The Scenic Path — a therapeutic framework that blends clinical models with a visual, metaphorical journey toward authenticity.",
+          "bio": "As a Licensed Mental Health Counselor in New Hampshire and Massachusetts, and the founder of Therosa Counseling, LLC, I have worked with individuals, couples, and families who have endured deep loss, shame, and hardship. From these experiences, I developed The Scenic Path — a therapeutic framework that blends clinical models with a visual, metaphorical journey toward authenticity. The Scenic Path is more than a method; it is a way of seeing oneself not as broken, but as a traveler. Clients learn to notice the survival roads they have walked, to recognize the bridges back to their true self, and to reclaim authenticity as their destination. My mission is to walk with people as they rediscover that their life has meaning, and that peace is possible.",
           "expertise": ["Mental Health", "Trauma-Informed Education", "Counseling", "Student Wellbeing"],
           "sessionIds": ["roundtable-3"],
           "isKeynote": false,
@@ -155,6 +155,28 @@
             "track": "General",
             "type": "keynote",
             "speaker": "Colleen Jennings, MCC VPAA",
+            "level": "all"
+          },
+          {
+            "id": "prayer-pledge",
+            "title": "Prayer & Pledge",
+            "description": "Opening prayer and pledge of allegiance",
+            "startTime": "2025-10-24T08:50:00.000Z",
+            "endTime": "2025-10-24T08:55:00.000Z",
+            "track": "General",
+            "type": "ceremony",
+            "speaker": "Michael Magoon, NHBEA Vice President & Maria Matarazzo, NHBEA Director",
+            "level": "all"
+          },
+          {
+            "id": "keynote-intro",
+            "title": "Introduction of Keynote",
+            "description": "Introduction of keynote speaker Rony Camille",
+            "startTime": "2025-10-24T08:55:00.000Z",
+            "endTime": "2025-10-24T09:00:00.000Z",
+            "track": "General",
+            "type": "introduction",
+            "speaker": "Dorothy O'Gara, NHBEA President",
             "level": "all"
           },
           {
@@ -347,9 +369,11 @@
       "status": "registration_open",
       "metadata": {
         "createdAt": "2025-01-21T00:00:00.000Z",
-        "updatedAt": "2025-01-21T00:00:00.000Z",
+        "updatedAt": "2025-10-21T00:00:00.000Z",
         "createdBy": "admin",
-        "featured": true
+        "featured": true,
+        "programVersion": "2025-2",
+        "lastSyncedWith": "Program.2025-2.docx"
       }
     }
   }
